@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.jiayuqicz.mygaode.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"
+        android:id="@+id/title" />
 
-
-    <com.amap.api.maps.MapView
-        android:id="@+id/map"
+    <fragment
+        android:name="com.jiayuqicz.mygaode.FragmentBase"
+        android:id="@+id/fragment"
+        android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+</RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+

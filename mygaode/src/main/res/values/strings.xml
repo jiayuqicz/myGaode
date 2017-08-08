@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">myGaode</string>
+    <string name="fragment1">Map</string>
+    <string name="fragment2">weather</string>
+    <string name="fragment3">settings</string>
+
+     <!--TODO: Remove or change this placeholder text-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
