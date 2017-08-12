@@ -12,9 +12,6 @@ import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.MyLocationStyle;
 
-/**
- * Created by jiayuqicz on 2017/8/6 0006.
- */
 
 public class MapFragment extends Fragment {
 
