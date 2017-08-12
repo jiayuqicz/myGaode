@@ -1,29 +1,58 @@
 package com.jiayuqicz.mygaode;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-//    TextureMapView mMapView = null;
+    private MapFragment mapFragment = null;
+    private WeatherFragment weatherFragment = null;
+    private SettingFragment settingFragment = null;
+    private FragmentTransaction transaction = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //获取地图控件引用
-//        mMapView = (TextureMapView) findViewById(R.id.map);
-        //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
-//        mMapView.onCreate(savedInstanceState);
-//        AMap aMap = mMapView.getMap();
-//        aMap.setMapType(AMap.MAP_TYPE_SATELLITE);
-//        MyLocationStyle style = new MyLocationStyle();
-//        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);
-//        style.interval(1000);
-//        aMap.setMyLocationStyle(style);
-//        aMap.setMyLocationEnabled(true);
-//
-//        UiSettings uiSettings = aMap.getUiSettings();
-//        uiSettings.setCompassEnabled(true);
+        if(savedInstanceState != null) {
+            return;
+        }
+        initView();
+    }
 
+    public void initView() {
+
+        if(findViewById(R.id.fragment_container)!=null) {
+            //初始化所有的Fragment
+            mapFragment = new MapFragment();
+            weatherFragment = new WeatherFragment();
+            settingFragment = new SettingFragment();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.fragment_container,mapFragment).commit();
+        }
+    }
+
+    public void replace(Fragment fragment) {
+        //重新获取fragment变换
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container,fragment);
+        //允许返回键返回
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void selectWeatherFragment(View view) {
+        replace(weatherFragment);
+    }
+
+    public void selectSettingFragment(View view) {
+        replace(settingFragment);
+    }
+
+    public void selectMapFragment(View view) {
+        replace(mapFragment);
     }
 }

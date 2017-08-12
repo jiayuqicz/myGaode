@@ -1,20 +1,22 @@
 package com.jiayuqicz.mygaode;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.TextureMapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.MyLocationStyle;
 
 /**
  * Created by jiayuqicz on 2017/8/6 0006.
  */
 
-public class FragmentBase extends Fragment {
+public class MapFragment extends Fragment {
 
     private TextureMapView mapView = null;
     private AMap aMap = null;
@@ -24,9 +26,8 @@ public class FragmentBase extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.map_layout,container,true);
+        View rootView = inflater.inflate(R.layout.fragment_map,container,false);
         return rootView;
-
     }
 
     @Override
@@ -35,6 +36,16 @@ public class FragmentBase extends Fragment {
         mapView = getView().findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         aMap = mapView.getMap();
+        MyLocationStyle style = new MyLocationStyle();
+        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);
+        style.interval(1000);
+        aMap.setMyLocationStyle(style);
+        aMap.setMyLocationEnabled(true);
+
+        UiSettings uiSettings = aMap.getUiSettings();
+        uiSettings.setCompassEnabled(true);
+
+
     }
 
     @Override
