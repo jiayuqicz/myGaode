@@ -18,8 +18,6 @@ public class MapFragment extends Fragment {
     private TextureMapView mapView = null;
     private AMap aMap = null;
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
