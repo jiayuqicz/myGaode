@@ -44,8 +44,6 @@ public class MapFragment extends Fragment {
 
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setCompassEnabled(true);
-
-
     }
 
     @Override
