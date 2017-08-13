@@ -38,6 +38,7 @@ public class MapFragment extends Fragment {
         aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);
 
+
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setCompassEnabled(true);
     }
