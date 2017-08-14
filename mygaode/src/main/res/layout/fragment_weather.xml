@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_root"
     android:background="@color/colorPrimary">
 
     <TextView
@@ -13,14 +14,6 @@
         android:textColor="@color/White"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/weather_live_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Weather_live_title"
-        android:textColor="@color/White"
-        android:textSize="24sp" />
-
     <GridLayout
         android:id="@+id/weather_live"
         android:layout_width="match_parent"
@@ -28,10 +21,20 @@
         android:columnCount="2">
 
         <TextView
-            android:id="@+id/weather"
-            android:layout_columnWeight="1"
+            android:layout_columnSpan="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/Null"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textAlignment="center"
             android:text="@string/weather"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -41,6 +44,8 @@
             android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
@@ -48,6 +53,7 @@
             android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/wind"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -57,6 +63,8 @@
             android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
@@ -64,6 +72,7 @@
             android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/humidity"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -73,6 +82,8 @@
             android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
@@ -80,6 +91,7 @@
             android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/temperature"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -88,10 +100,20 @@
             android:id="@+id/temperature_value"
             android:layout_columnWeight="1"
             android:layout_width="wrap_content"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
+            android:textColor="@color/White"
             android:textSize="18sp" />
 
     </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/Null"
+        android:textColor="@color/White"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/weather_forcast"
@@ -102,12 +124,52 @@
         android:textColor="@color/White"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/weather_forcast_value"
+    <GridLayout
+        android:id="@+id/forcast_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:textColor="@color/White"
-        android:textSize="24sp" />
+        android:layout_height="wrap_content"
+        android:columnCount="3">
+
+        <TextView
+            android:layout_columnSpan="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/Null"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/Date_value_forcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textAlignment="center"
+            android:text="@string/Date_forcast"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/weather_value_forcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textAlignment="center"
+            android:text="@string/weather"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/temperature_value_forcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="0.7"
+            android:text="@string/temperature"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+    </GridLayout>
+
 
 </LinearLayout>

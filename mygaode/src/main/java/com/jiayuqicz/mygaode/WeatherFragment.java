@@ -1,11 +1,13 @@
 package com.jiayuqicz.mygaode;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.amap.api.services.core.AMapException;
@@ -26,16 +28,13 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     private TextView weather = null;
     private TextView humidity = null;
     private TextView temperature = null;
-    private TextView weatherForcast = null;
+
+    private GridLayout forcast_root = null;
 
     private String cityName = "北京市";
 
     private WeatherSearchQuery query = null;
     private WeatherSearch weatherSearch = null;
-    private LocalWeatherForecast forcast = null;
-    private LocalWeatherLive live = null;
-
-    private List<LocalDayWeatherForecast> forcastList = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,21 +44,26 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         initView();
         searchForcastWeather();
         serchLiveWeather();
+
     }
 
     public void initView() {
-        wind = getView().findViewById(R.id.wind_value);
-        weather = getView().findViewById(R.id.weather_value);
-        humidity = getView().findViewById(R.id.humidity_value);
-        temperature = getView().findViewById(R.id.temperature_value);
-        weatherForcast = getView().findViewById(R.id.weather_forcast_value);
 
+        View view = getView();
 
+        wind = (TextView) view.findViewById(R.id.wind_value);
+        weather = (TextView) view.findViewById(R.id.weather_value);
+        humidity = (TextView) view.findViewById(R.id.humidity_value);
+        temperature = (TextView) view.findViewById(R.id.temperature_value);
+
+        forcast_root = (GridLayout) view.findViewById(R.id.forcast_root);
+        
     }
 
     public void searchForcastWeather() {
@@ -83,19 +87,55 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
 
     @Override
     public void onWeatherLiveSearched(LocalWeatherLiveResult localWeatherLiveResult, int rcode) {
+        if(rcode == AMapException.CODE_AMAP_SUCCESS) {
+            if(localWeatherLiveResult != null && localWeatherLiveResult.getLiveResult() != null) {
+                LocalWeatherLive live = localWeatherLiveResult.getLiveResult();
+                weather.setText(live.getWeather());
+                wind.setText(live.getWindPower());
+                humidity.setText(live.getHumidity());
+                temperature.setText(live.getTemperature());
+            }
+        }
 
     }
 
     @Override
     public void onWeatherForecastSearched(LocalWeatherForecastResult localWeatherForecastResult,
                                           int rcode) {
-        if (rcode == AMapException.CODE_AMAP_SUCCESS) {
+        if(rcode == AMapException.CODE_AMAP_SUCCESS) {
             if(localWeatherForecastResult != null && localWeatherForecastResult.getForecastResult()
                     != null && localWeatherForecastResult.getForecastResult().getWeatherForecast()
                     != null && localWeatherForecastResult.getForecastResult().getWeatherForecast()
                     .size()>0) {
-                forcast = localWeatherForecastResult.getForecastResult();
-                forcastList = forcast.getWeatherForecast();
+                LocalWeatherForecast forcast = localWeatherForecastResult.getForecastResult();
+                List<LocalDayWeatherForecast> forcastList = forcast.getWeatherForecast();
+
+                for (LocalDayWeatherForecast forecast : forcastList) {
+                    {
+                        TextView textView = new TextView(getContext());
+                        textView.setText(forecast.getDate());
+                        textView.setTextSize(18);
+                        textView.setTextColor(Color.WHITE);
+                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        forcast_root.addView(textView);
+                    }
+                    {
+                        TextView textView = new TextView(getContext());
+                        textView.setText(forecast.getDayWeather()+"/"+forecast.getNightWeather());
+                        textView.setTextSize(18);
+                        textView.setTextColor(Color.WHITE);
+                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        forcast_root.addView(textView);
+                    }
+                    {
+                        TextView textView = new TextView(getContext());
+                        textView.setText(forecast.getDayTemp()+ "/"+ forecast.getNightTemp());
+                        textView.setTextSize(18);
+                        textView.setTextColor(Color.WHITE);
+                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        forcast_root.addView(textView);
+                    }
+                }
 
             }
         }

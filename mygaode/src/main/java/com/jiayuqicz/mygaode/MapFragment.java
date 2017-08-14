@@ -29,7 +29,7 @@ public class MapFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mapView = getView().findViewById(R.id.mapView);
+        mapView = (TextureMapView) getView().findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         aMap = mapView.getMap();
         MyLocationStyle style = new MyLocationStyle();
