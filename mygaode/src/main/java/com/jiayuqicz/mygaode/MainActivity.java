@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction transaction = null;
     private ViewGroup fragment_container = null;
     public static long animateDuringTime;
+    //记录当前的页面，解决重复点击相同的标签，导致页面的重新加载的bug
+    private String currentFragment = null;
 
 
     @Override
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             animateDuringTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
             transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.fragment_container,mapFragment).commit();
+            currentFragment = "mapFragment";
         }
     }
 
@@ -55,14 +58,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void selectWeatherFragment(View view) {
+
+        if(currentFragment == "weatherFragment")return;
+
         replace(weatherFragment);
+        currentFragment = "weatherFragment";
     }
 
     public void selectSettingFragment(View view) {
+
+        if(currentFragment == "settingFragment")return;
+
         replace(settingFragment);
+        currentFragment = "settingFragment";
     }
 
     public void selectMapFragment(View view) {
+
+        if(currentFragment == "MapFragment")return;
+
         replace(mapFragment);
+        currentFragment = "MapFragment";
     }
 }
