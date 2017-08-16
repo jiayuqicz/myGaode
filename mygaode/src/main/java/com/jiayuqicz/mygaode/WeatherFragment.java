@@ -1,5 +1,6 @@
 package com.jiayuqicz.mygaode;
 
+
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
