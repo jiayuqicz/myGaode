@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/settings_map_group">
+        <CheckBoxPreference
+            android:key="show_compass"
+            android:title="@string/settings_show_compass"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_weather_group">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_week"
+            android:textColor="@color/White"
+            android:title="@string/settings_show_weeks" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,9 +1,9 @@
 package com.jiayuqicz.mygaode;
 
+import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,15 +61,13 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
         weather = (TextView) view.findViewById(R.id.weather_value);
         humidity = (TextView) view.findViewById(R.id.humidity_value);
         temperature = (TextView) view.findViewById(R.id.temperature_value);
-
         forcast_root = (GridLayout) view.findViewById(R.id.forcast_root);
-        
     }
 
     public void searchForcastWeather() {
 
         query = new WeatherSearchQuery(cityName,WeatherSearchQuery.WEATHER_TYPE_FORECAST);
-        weatherSearch = new WeatherSearch(getContext());
+        weatherSearch = new WeatherSearch(getActivity());
         weatherSearch.setOnWeatherSearchListener(this);
         weatherSearch.setQuery(query);
         weatherSearch.searchWeatherAsyn();
@@ -78,7 +76,7 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
 
     public void serchLiveWeather() {
         query = new WeatherSearchQuery(cityName,WeatherSearchQuery.WEATHER_TYPE_LIVE);
-        weatherSearch = new WeatherSearch(getContext());
+        weatherSearch = new WeatherSearch(getActivity());
         weatherSearch.setOnWeatherSearchListener(this);
         weatherSearch.setQuery(query);
         weatherSearch.searchWeatherAsyn();
@@ -94,6 +92,15 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
                 wind.setText(live.getWindPower());
                 humidity.setText(live.getHumidity());
                 temperature.setText(live.getTemperature());
+                //当取得数据后，添加过渡动画
+                weather.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
+                        .setDuration(MainActivity.animateDuringTime);
+                wind.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
+                        .setDuration(MainActivity.animateDuringTime);
+                humidity.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
+                        .setDuration(MainActivity.animateDuringTime);
+                temperature.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
+                        .setDuration(MainActivity.animateDuringTime);
             }
         }
 
@@ -112,31 +119,41 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
 
                 for (LocalDayWeatherForecast forecast : forcastList) {
                     {
-                        TextView textView = new TextView(getContext());
+                        TextView textView = new TextView(getActivity());
                         textView.setText(forecast.getDate());
                         textView.setTextSize(18);
                         textView.setTextColor(Color.WHITE);
                         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        //设置为不可见
+                        textView.setAlpha(0);
                         forcast_root.addView(textView);
+                        //增加过渡动画
+                        textView.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
+                                .setDuration(MainActivity.animateDuringTime);
                     }
                     {
-                        TextView textView = new TextView(getContext());
+                        TextView textView = new TextView(getActivity());
                         textView.setText(forecast.getDayWeather()+"/"+forecast.getNightWeather());
                         textView.setTextSize(18);
                         textView.setTextColor(Color.WHITE);
                         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        textView.setAlpha(0);
                         forcast_root.addView(textView);
+                        textView.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
+                                .setDuration(MainActivity.animateDuringTime);
                     }
                     {
-                        TextView textView = new TextView(getContext());
+                        TextView textView = new TextView(getActivity());
                         textView.setText(forecast.getDayTemp()+ "/"+ forecast.getNightTemp());
                         textView.setTextSize(18);
                         textView.setTextColor(Color.WHITE);
                         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        textView.setAlpha(0);
                         forcast_root.addView(textView);
+                        textView.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
+                                .setDuration(MainActivity.animateDuringTime);
                     }
                 }
-
             }
         }
 

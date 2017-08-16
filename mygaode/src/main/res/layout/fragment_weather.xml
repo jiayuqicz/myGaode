@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_root"
@@ -21,10 +22,9 @@
         android:columnCount="2">
 
         <TextView
-            android:layout_columnSpan="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnSpan="2"
             android:text="@string/Null"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -34,74 +34,70 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:textAlignment="center"
             android:text="@string/weather"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/weather_value"
-            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnWeight="1"
+            android:alpha="0"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/wind"
-            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnWeight="1"
             android:text="@string/wind"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/wind_value"
-            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnWeight="1"
+            android:alpha="0"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/humidity"
-            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnWeight="1"
             android:text="@string/humidity"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/humidity_value"
-            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnWeight="1"
+            android:alpha="0"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/temperature"
-            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnWeight="1"
             android:text="@string/temperature"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/temperature_value"
-            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:alpha="0"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
@@ -110,7 +106,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="@string/Null"
         android:textColor="@color/White"
         android:textSize="18sp" />
@@ -119,8 +114,8 @@
         android:id="@+id/weather_forcast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/weather_forcast"
         android:textAlignment="center"
+        android:text="@string/weather_forcast"
         android:textColor="@color/White"
         android:textSize="24sp" />
 
@@ -131,10 +126,9 @@
         android:columnCount="3">
 
         <TextView
-            android:layout_columnSpan="3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_columnSpan="3"
             android:text="@string/Null"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -144,7 +138,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:textAlignment="center"
             android:text="@string/Date_forcast"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -154,7 +147,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:textAlignment="center"
             android:text="@string/weather"
             android:textColor="@color/White"
             android:textSize="18sp" />
@@ -165,7 +157,6 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="0.7"
             android:text="@string/temperature"
-            android:textAlignment="center"
             android:textColor="@color/White"
             android:textSize="18sp" />
 

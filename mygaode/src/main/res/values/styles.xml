@@ -5,7 +5,10 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@color/Settings_background</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="colorAccent">@color/White</item>
     </style>
 
 </resources>

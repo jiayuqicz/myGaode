@@ -1,8 +1,8 @@
 package com.jiayuqicz.mygaode;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,13 +33,16 @@ public class MapFragment extends Fragment {
         mapView.onCreate(savedInstanceState);
         aMap = mapView.getMap();
         MyLocationStyle style = new MyLocationStyle();
-        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);
+        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
         style.interval(1000);
         aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);
 
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setCompassEnabled(true);
+        uiSettings.setMyLocationButtonEnabled(true);
+        uiSettings.setZoomControlsEnabled(false);
+        uiSettings.setAllGesturesEnabled(true);
     }
 
     @Override

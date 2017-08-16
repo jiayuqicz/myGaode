@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">myGaode</string>
-    <string name="fragment1">Map</string>
-    <string name="fragment2">weather</string>
-    <string name="fragment3">settings</string>
+    <string name="app_name">阿尔法Go</string>
+    <string name="fragment1">地图</string>
+    <string name="fragment2">天气</string>
+    <string name="fragment3">设置</string>
     <string name="Null"> </string>
 
     <!--TODO: Remove or change this placeholder text-->
@@ -19,6 +19,10 @@
     <string name="Temperature_forcast">温度</string>
 
     <string name="settings">设置</string>
+    <string name="settings_map_group">地图</string>
+    <string name="settings_weather_group">天气</string>
+    <string name="settings_show_weeks">显示星期</string>
+    <string name="settings_show_compass">显示指南针</string>
 
 
 </resources>
