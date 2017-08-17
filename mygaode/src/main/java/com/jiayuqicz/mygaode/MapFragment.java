@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.MyLocationStyle;
 
 
 public class MapFragment extends Fragment {
@@ -32,10 +33,11 @@ public class MapFragment extends Fragment {
         mapView = (TextureMapView) getView().findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         aMap = mapView.getMap();
-//        MyLocationStyle style = new MyLocationStyle();
-//        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
-//        style.interval(1000);
-//        aMap.setMyLocationStyle(style);
+        MyLocationStyle style = new MyLocationStyle();
+        style.showMyLocation(true);
+        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
+        style.interval(600000);
+        aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);
 
         UiSettings uiSettings = aMap.getUiSettings();
