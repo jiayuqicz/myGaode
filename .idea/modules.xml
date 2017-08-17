@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myGaode.iml" filepath="$PROJECT_DIR$/myGaode.iml" />
       <module fileurl="file://$PROJECT_DIR$/mygaode/mygaode.iml" filepath="$PROJECT_DIR$/mygaode/mygaode.iml" />
       <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
     </modules>

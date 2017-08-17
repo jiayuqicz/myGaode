@@ -3,7 +3,7 @@
     <string name="fragment1">地图</string>
     <string name="fragment2">天气</string>
     <string name="fragment3">设置</string>
-    <string name="Null"> </string>
+    <string name="Null"></string>
 
     <!--TODO: Remove or change this placeholder text-->
     <string name="Weather_title">天气情况</string>

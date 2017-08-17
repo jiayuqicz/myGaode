@@ -2,7 +2,6 @@ package com.jiayuqicz.mygaode;
 
 
 import android.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -93,15 +92,6 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
                 wind.setText(live.getWindPower());
                 humidity.setText(live.getHumidity());
                 temperature.setText(live.getTemperature());
-                //当取得数据后，添加过渡动画
-                weather.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
-                        .setDuration(MainActivity.animateDuringTime);
-                wind.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
-                        .setDuration(MainActivity.animateDuringTime);
-                humidity.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
-                        .setDuration(MainActivity.animateDuringTime);
-                temperature.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
-                        .setDuration(MainActivity.animateDuringTime);
             }
         }
 
@@ -111,52 +101,41 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     public void onWeatherForecastSearched(LocalWeatherForecastResult localWeatherForecastResult,
                                           int rcode) {
         if(rcode == AMapException.CODE_AMAP_SUCCESS) {
-            if(localWeatherForecastResult != null && localWeatherForecastResult.getForecastResult()
+            if (localWeatherForecastResult != null && localWeatherForecastResult.getForecastResult()
                     != null && localWeatherForecastResult.getForecastResult().getWeatherForecast()
                     != null && localWeatherForecastResult.getForecastResult().getWeatherForecast()
-                    .size()>0) {
-                LocalWeatherForecast forcast = localWeatherForecastResult.getForecastResult();
-                List<LocalDayWeatherForecast> forcastList = forcast.getWeatherForecast();
+                    .size() > 0) {
+                LocalWeatherForecast forclocalWeatherForecastst = localWeatherForecastResult
+                        .getForecastResult();
+                List<LocalDayWeatherForecast> forcastList = forclocalWeatherForecastst
+                        .getWeatherForecast();
 
-                for (LocalDayWeatherForecast forecast : forcastList) {
-                    {
-                        TextView textView = new TextView(getActivity());
-                        textView.setText(forecast.getDate());
-                        textView.setTextSize(18);
-                        textView.setTextColor(Color.WHITE);
-                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                        //设置为不可见
-                        textView.setAlpha(0);
-                        forcast_root.addView(textView);
-                        //增加过渡动画
-                        textView.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
-                                .setDuration(MainActivity.animateDuringTime);
-                    }
-                    {
-                        TextView textView = new TextView(getActivity());
-                        textView.setText(forecast.getDayWeather()+"/"+forecast.getNightWeather());
-                        textView.setTextSize(18);
-                        textView.setTextColor(Color.WHITE);
-                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                        textView.setAlpha(0);
-                        forcast_root.addView(textView);
-                        textView.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
-                                .setDuration(MainActivity.animateDuringTime);
-                    }
-                    {
-                        TextView textView = new TextView(getActivity());
-                        textView.setText(forecast.getDayTemp()+ "/"+ forecast.getNightTemp());
-                        textView.setTextSize(18);
-                        textView.setTextColor(Color.WHITE);
-                        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                        textView.setAlpha(0);
-                        forcast_root.addView(textView);
-                        textView.animate().alpha(1).setDuration(MainActivity.animateDuringTime)
-                                .setDuration(MainActivity.animateDuringTime);
-                    }
+                LocalDayWeatherForecast localDayWeatherForecast;
+                TextView textView;
+
+                for (int i = 1; i < forcastList.size(); i++) {
+                    localDayWeatherForecast= forcastList.get(i);
+
+                    //日期
+                    textView = (TextView) getView().findViewWithTag("Date_value_forcast_day" +
+                            String.valueOf(i));
+                    textView.setText(localDayWeatherForecast.getDate());
+
+                    //天气
+                    textView = (TextView) getView()
+                                .findViewWithTag("weather_value_forcast_day" + String.valueOf(i));
+                    textView.setText(localDayWeatherForecast.getDayWeather() + "/" +
+                            localDayWeatherForecast.getNightWeather());
+
+                    //温度
+                    textView = (TextView) getView().findViewWithTag("temperature_value_forcast_day"
+                            + String.valueOf(i));
+                    textView.setText(localDayWeatherForecast.getDayTemp() + "/"
+                            + localDayWeatherForecast.getNightTemp());
                 }
             }
         }
-
     }
+
 }
+
