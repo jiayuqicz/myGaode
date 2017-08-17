@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.amap.api.services.core.AMapException;
@@ -28,8 +27,6 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     private TextView weather = null;
     private TextView humidity = null;
     private TextView temperature = null;
-
-    private GridLayout forcast_root = null;
 
     private String cityName = "北京市";
 
@@ -61,7 +58,6 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
         weather = (TextView) view.findViewById(R.id.weather_value);
         humidity = (TextView) view.findViewById(R.id.humidity_value);
         temperature = (TextView) view.findViewById(R.id.temperature_value);
-        forcast_root = (GridLayout) view.findViewById(R.id.forcast_root);
     }
 
     public void searchForcastWeather() {

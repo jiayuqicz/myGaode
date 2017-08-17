@@ -11,9 +11,15 @@ import android.support.v13.app.FragmentPagerAdapter;
 
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
+    private MapFragment mapFragment = null;
+    private WeatherFragment weatherFragment = null;
+    private SettingFragment settingFragment = null;
 
     public MyPagerAdapter(FragmentManager fm) {
         super(fm);
+        mapFragment = new MapFragment();
+        weatherFragment = new WeatherFragment();
+        settingFragment = new SettingFragment();
     }
 
     @Override
@@ -25,11 +31,11 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new MapFragment();
+                return mapFragment;
             case 1:
-                return new WeatherFragment();
+                return weatherFragment;
             case 2:
-                return new SettingFragment();
+                return settingFragment;
         }
         return null;
     }
