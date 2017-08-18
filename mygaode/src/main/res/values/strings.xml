@@ -2,22 +2,24 @@
     <string name="app_name">阿尔法Go</string>
     <string name="fragment1">地图</string>
     <string name="fragment2">天气</string>
-    <string name="fragment3">设置</string>
+    <string name="fragment3">搜索</string>
+    <string name="fragment4">设置</string>
+
     <string name="Null"></string>
 
-    <!--TODO: Remove or change this placeholder text-->
+    <!--天气-->
     <string name="Weather_title">天气情况</string>
     <string name="Weather_live_title">实时天气</string>
     <string name="wind">风力</string>
     <string name="humidity">湿度</string>
     <string name="weather">天气</string>
     <string name="temperature">温度</string>
-
     <string name="weather_forcast">天气预报</string>
     <string name="Date_forcast">日期</string>
     <string name="Weather_forcast">天气</string>
     <string name="Temperature_forcast">温度</string>
 
+    <!--设置-->
     <string name="settings">设置</string>
     <string name="settings_map_group">地图</string>
     <string name="settings_weather_group">天气</string>

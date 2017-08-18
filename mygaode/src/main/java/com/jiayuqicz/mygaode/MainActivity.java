@@ -59,4 +59,7 @@ public class MainActivity extends AppCompatActivity {
         pager.setCurrentItem(0);
         currentFragment = "MapFragment";
     }
+
+    public void selectSearchFragment(View view) {
+    }
 }

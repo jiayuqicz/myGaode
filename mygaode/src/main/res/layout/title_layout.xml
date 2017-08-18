@@ -29,7 +29,7 @@
         android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/setting"
+        android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -37,6 +37,18 @@
         android:clickable="true"
         android:gravity="center"
         android:text="@string/fragment3"
+        android:onClick="selectSearchFragment"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/setting"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/background"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/fragment4"
         android:onClick="selectSettingFragment"
         android:textColor="@android:color/white" />
 </LinearLayout>
