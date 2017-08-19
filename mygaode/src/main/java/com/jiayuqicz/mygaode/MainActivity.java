@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         if(findViewById(R.id.viewPager)!=null) {
 
             animateDuringTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
+            //记录当前页面
             currentFragment = "mapFragment";
 
             pager = (ViewPager) findViewById(R.id.viewPager);
@@ -39,27 +39,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void selectWeatherFragment(View view) {
 
-        if(currentFragment == "weatherFragment")return;
-
+        if(currentFragment == "weatherFragment")
+            return;
+        //选择当前页面
         pager.setCurrentItem(1);
         currentFragment = "weatherFragment";
     }
 
     public void selectSettingFragment(View view) {
 
-        if(currentFragment == "settingFragment")return;
-        pager.setCurrentItem(2);
+        if(currentFragment == "settingFragment")
+            return;
+        pager.setCurrentItem(3);
         currentFragment = "settingFragment";
     }
 
     public void selectMapFragment(View view) {
 
-        if(currentFragment == "MapFragment")return;
-
+        if(currentFragment == "MapFragment")
+            return;
         pager.setCurrentItem(0);
         currentFragment = "MapFragment";
     }
 
     public void selectSearchFragment(View view) {
+
+        if (currentFragment == "searchFragment")
+            return;
+        pager.setCurrentItem(2);
+        currentFragment = "searchFragment";
     }
 }

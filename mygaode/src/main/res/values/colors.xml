@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="Black">#000000</color>
     <color name="White">#ffffff</color>
+    <color name="Palewhite">#d6d6d6</color>
     <color name="Accent">#3d4e4c</color>
     <color name="Settings_background">#3F51B5</color>
 </resources>

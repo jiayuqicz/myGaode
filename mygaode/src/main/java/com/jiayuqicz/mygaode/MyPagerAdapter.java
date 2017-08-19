@@ -14,17 +14,19 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     private MapFragment mapFragment = null;
     private WeatherFragment weatherFragment = null;
     private SettingFragment settingFragment = null;
+    private SearchFragment searchFragment = null;
 
     public MyPagerAdapter(FragmentManager fm) {
         super(fm);
         mapFragment = new MapFragment();
         weatherFragment = new WeatherFragment();
         settingFragment = new SettingFragment();
+        searchFragment = new SearchFragment();
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -35,6 +37,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return weatherFragment;
             case 2:
+                return searchFragment;
+            case 3:
                 return settingFragment;
         }
         return null;
