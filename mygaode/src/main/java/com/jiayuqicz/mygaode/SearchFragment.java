@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -26,7 +27,8 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment implements TextWatcher, Inputtips.InputtipsListener{
+public class SearchFragment extends Fragment implements TextWatcher, Inputtips.InputtipsListener,
+        AdapterView.OnItemClickListener {
 
     private String city = "北京";
 
@@ -47,6 +49,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
         inputList = (ListView) getView().findViewById(R.id.my_search_bar_items);
         searchBar = (AutoCompleteTextView) getView().findViewById(R.id.my_search_bar);
         searchBar.addTextChangedListener(this);
+        inputList.setOnItemClickListener(this);
 
     }
 
@@ -89,5 +92,9 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
             inputList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     }
 }
