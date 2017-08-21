@@ -2,6 +2,7 @@ package com.jiayuqicz.mygaode;
 
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -12,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.amap.api.services.core.AMapException;
+import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.help.Inputtips;
 import com.amap.api.services.help.InputtipsQuery;
 import com.amap.api.services.help.Tip;
@@ -35,6 +36,12 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
     private ListView inputList;
     private AutoCompleteTextView searchBar;
 
+    private MyItemClickedListener mCallback = null;
+
+    public interface MyItemClickedListener {
+        void setPoint(LatLonPoint point);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +57,13 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
         searchBar = (AutoCompleteTextView) getView().findViewById(R.id.my_search_bar);
         searchBar.addTextChangedListener(this);
         inputList.setOnItemClickListener(this);
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        mCallback = (MyItemClickedListener) context;
     }
 
     @Override
@@ -74,20 +87,22 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
     }
 
+
     @Override
     public void onGetInputtips(List<Tip> list, int rCode) {
 
         if(rCode == AMapException.CODE_AMAP_SUCCESS) {
-            List<HashMap<String, String>> tips = new ArrayList<>();
+            List<HashMap<String, Object>> tips = new ArrayList<>();
 
             for(Tip tip : list) {
-                HashMap<String, String> hashMap = new HashMap<>();
+                HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("name", tip.getName());
                 hashMap.put("address", tip.getAddress());
+                hashMap.put("point", tip.getPoint());
                 tips.add(hashMap);
             }
 
-            SimpleAdapter adapter = new SimpleAdapter(getActivity(), tips, R.layout.tips_tems_layout,
+            MySimpleAdapter adapter = new MySimpleAdapter(getActivity(), tips, R.layout.tips_tems_layout,
                     new String[] {"name", "address"}, new int[] {R.id.tip_name, R.id.tip_address});
             inputList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -96,5 +111,11 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        LatLonPoint point = (LatLonPoint) view.getTag();
+        mCallback.setPoint(point);
+
     }
+
+
 }

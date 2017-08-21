@@ -5,13 +5,24 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.amap.api.services.core.LatLonPoint;
+
+public class MainActivity extends AppCompatActivity implements SearchFragment.MyItemClickedListener
+{
 
     public static long animateDuringTime;
 
     //记录当前的页面，解决重复点击相同的标签，导致页面的重新加载的bug
     private String currentFragment = null;
     private ViewPager pager = null;
+
+    private String MAP = "mapFragment";
+    private String SEARCH = "searchFragment";
+    private String WEATHER = "weatherFragment";
+    private String SETTINGS = "settingFragment";
+
+    //记录Maker的坐标
+    private LatLonPoint point = null;
 
 
     @Override
@@ -29,44 +40,51 @@ public class MainActivity extends AppCompatActivity {
         if(findViewById(R.id.viewPager)!=null) {
 
             animateDuringTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            //记录当前页面
-            currentFragment = "mapFragment";
 
             pager = (ViewPager) findViewById(R.id.viewPager);
             pager.setAdapter(new MyPagerAdapter(getFragmentManager()));
+
         }
-    }
-
-    public void selectWeatherFragment(View view) {
-
-        if(currentFragment == "weatherFragment")
-            return;
-        //选择当前页面
-        pager.setCurrentItem(1);
-        currentFragment = "weatherFragment";
-    }
-
-    public void selectSettingFragment(View view) {
-
-        if(currentFragment == "settingFragment")
-            return;
-        pager.setCurrentItem(3);
-        currentFragment = "settingFragment";
     }
 
     public void selectMapFragment(View view) {
 
-        if(currentFragment == "MapFragment")
+        if(currentFragment == MAP)
             return;
         pager.setCurrentItem(0);
-        currentFragment = "MapFragment";
+        //记录当前页面
+        currentFragment = MAP;
     }
 
     public void selectSearchFragment(View view) {
 
-        if (currentFragment == "searchFragment")
+        if (currentFragment == SEARCH)
             return;
-        pager.setCurrentItem(2);
-        currentFragment = "searchFragment";
+        pager.setCurrentItem(1);
+        currentFragment = SEARCH;
     }
+
+    public void selectWeatherFragment(View view) {
+
+        if(currentFragment == WEATHER)
+            return;
+        //选择当前页面
+        pager.setCurrentItem(2);
+        currentFragment = WEATHER;
+    }
+
+    public void selectSettingFragment(View view) {
+
+        if(currentFragment == SETTINGS)
+            return;
+        pager.setCurrentItem(3);
+        currentFragment = SETTINGS;
+    }
+
+    @Override
+    public void setPoint(LatLonPoint point) {
+        MapFragment mapFragment = (MapFragment) pager.getAdapter().instantiateItem(pager, 0);
+        mapFragment.setMaker(point);
+    }
+
 }

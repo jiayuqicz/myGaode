@@ -35,9 +35,9 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return mapFragment;
             case 1:
-                return weatherFragment;
-            case 2:
                 return searchFragment;
+            case 2:
+                return weatherFragment;
             case 3:
                 return settingFragment;
         }

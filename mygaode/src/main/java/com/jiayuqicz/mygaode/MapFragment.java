@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.services.core.LatLonPoint;
 
 
 public class MapFragment extends Fragment {
@@ -69,5 +72,11 @@ public class MapFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
+    }
+
+    public void setMaker(LatLonPoint makerPoint) {
+        MarkerOptions options = new MarkerOptions().position(new LatLng(makerPoint.getLatitude(),
+                makerPoint.getLongitude()));
+        aMap.addMarker(options);
     }
 }

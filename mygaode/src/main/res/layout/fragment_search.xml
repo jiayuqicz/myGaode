@@ -9,7 +9,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:hint="@string/Hint"
-        android:textColor="@color/White"/>
+        android:textColorHint="@color/Hint"
+        android:textColor="@color/White"
+        />
     <ListView
         android:id="@+id/my_search_bar_items"
         android:layout_width="match_parent"
