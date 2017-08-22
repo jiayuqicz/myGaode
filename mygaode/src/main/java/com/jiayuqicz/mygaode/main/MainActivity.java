@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     private String WEATHER = "weatherFragment";
     private String SETTINGS = "settingFragment";
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
