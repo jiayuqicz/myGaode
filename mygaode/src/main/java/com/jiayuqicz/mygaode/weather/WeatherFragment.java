@@ -1,4 +1,4 @@
-package com.jiayuqicz.mygaode;
+package com.jiayuqicz.mygaode.weather;
 
 
 import android.app.Fragment;
@@ -17,6 +17,7 @@ import com.amap.api.services.weather.LocalWeatherLive;
 import com.amap.api.services.weather.LocalWeatherLiveResult;
 import com.amap.api.services.weather.WeatherSearch;
 import com.amap.api.services.weather.WeatherSearchQuery;
+import com.jiayuqicz.mygaode.R;
 
 import java.util.List;
 

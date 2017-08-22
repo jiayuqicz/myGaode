@@ -1,9 +1,11 @@
-package com.jiayuqicz.mygaode;
+package com.jiayuqicz.mygaode.setting;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
+
+import com.jiayuqicz.mygaode.R;
 
 
 public class SettingFragment extends PreferenceFragment {

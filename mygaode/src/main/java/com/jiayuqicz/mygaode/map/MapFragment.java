@@ -1,4 +1,4 @@
-package com.jiayuqicz.mygaode;
+package com.jiayuqicz.mygaode.map;
 
 
 import android.app.Fragment;
@@ -15,6 +15,7 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.services.core.LatLonPoint;
+import com.jiayuqicz.mygaode.R;
 
 
 public class MapFragment extends Fragment {

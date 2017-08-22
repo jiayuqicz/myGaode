@@ -1,4 +1,4 @@
-package com.jiayuqicz.mygaode;
+package com.jiayuqicz.mygaode.search;
 
 import android.content.Context;
 import android.view.View;
@@ -29,11 +29,7 @@ public class MySimpleAdapter extends SimpleAdapter {
         View view = super.getView(position, convertView, parent);
         Map data = dataList.get(position);
         LatLonPoint point = (LatLonPoint) data.get("point");
-
-//        if (point == null) {
-//            Log.e("test", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-//        }
-
+        //添加位置数据
         view.setTag(point);
         return view;
     }

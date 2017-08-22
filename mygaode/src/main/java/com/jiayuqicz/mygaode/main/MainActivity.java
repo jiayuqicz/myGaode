@@ -1,4 +1,4 @@
-package com.jiayuqicz.mygaode;
+package com.jiayuqicz.mygaode.main;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.amap.api.services.core.LatLonPoint;
+import com.jiayuqicz.mygaode.R;
+import com.jiayuqicz.mygaode.map.MapFragment;
+import com.jiayuqicz.mygaode.map.MyPagerAdapter;
+import com.jiayuqicz.mygaode.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements SearchFragment.MyItemClickedListener
 {
-
-    public static long animateDuringTime;
 
     //记录当前的页面，解决重复点击相同的标签，导致页面的重新加载的bug
     private String currentFragment = null;
@@ -20,10 +22,6 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     private String SEARCH = "searchFragment";
     private String WEATHER = "weatherFragment";
     private String SETTINGS = "settingFragment";
-
-    //记录Maker的坐标
-    private LatLonPoint point = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +36,8 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     public void initView() {
 
         if(findViewById(R.id.viewPager)!=null) {
-
-            animateDuringTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
             pager = (ViewPager) findViewById(R.id.viewPager);
             pager.setAdapter(new MyPagerAdapter(getFragmentManager()));
-
         }
     }
 

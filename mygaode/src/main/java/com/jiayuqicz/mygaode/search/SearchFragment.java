@@ -1,8 +1,7 @@
-package com.jiayuqicz.mygaode;
+package com.jiayuqicz.mygaode.search;
 
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -19,6 +18,8 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.help.Inputtips;
 import com.amap.api.services.help.InputtipsQuery;
 import com.amap.api.services.help.Tip;
+import com.jiayuqicz.mygaode.main.MainActivity;
+import com.jiayuqicz.mygaode.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,17 +54,12 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        mCallback = (MyItemClickedListener) getActivity();
+
         inputList = (ListView) getView().findViewById(R.id.my_search_bar_items);
         searchBar = (AutoCompleteTextView) getView().findViewById(R.id.my_search_bar);
         searchBar.addTextChangedListener(this);
         inputList.setOnItemClickListener(this);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        mCallback = (MyItemClickedListener) context;
     }
 
     @Override
@@ -114,6 +110,8 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
         LatLonPoint point = (LatLonPoint) view.getTag();
         mCallback.setPoint(point);
+        MainActivity activity = (MainActivity) mCallback;
+        activity.selectMapFragment(null);
 
     }
 

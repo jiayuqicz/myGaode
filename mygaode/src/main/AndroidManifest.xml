@@ -16,7 +16,7 @@
             "73c8d17159e234c53a7705f05679258f">
         </meta-data>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
