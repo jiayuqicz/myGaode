@@ -21,11 +21,16 @@
 
     <!--设置-->
     <string name="settings">设置</string>
+
     <string name="settings_map_group">地图</string>
-    <string name="settings_weather_group">天气</string>
-    <string name="settings_show_weeks">显示星期</string>
     <string name="settings_show_compass">显示指南针</string>
 
+    <string name="settings_weather_group">天气预报</string>
+    <string name="settings_show_today">包含今天</string>
+
+    <string name="gesture">手势</string>
+    <string name="map_switch_gesture">开启地图界面的切换手势</string>
+    <string name="map_gensture">开启地图界面的手势操作</string>
 
 
     <!-- 搜索-->

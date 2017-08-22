@@ -5,6 +5,7 @@
         android:title="@string/settings_map_group">
         <CheckBoxPreference
             android:key="show_compass"
+            android:textColor="@color/White"
             android:title="@string/settings_show_compass"
             android:defaultValue="true"/>
     </PreferenceCategory>
@@ -13,9 +14,25 @@
         android:title="@string/settings_weather_group">
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="show_week"
+            android:key="show_today"
             android:textColor="@color/White"
-            android:title="@string/settings_show_weeks" />
+            android:title="@string/settings_show_today" />
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/gesture">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="map_gensture"
+            android:textColor="@color/White"
+            android:title="@string/map_gensture"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="map_switch_gensture"
+            android:textColor="@color/White"
+            android:title="@string/map_switch_gesture"/>
+    </PreferenceCategory>
+
+
 
 </PreferenceScreen>

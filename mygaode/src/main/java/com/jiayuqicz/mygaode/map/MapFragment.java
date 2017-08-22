@@ -2,7 +2,9 @@ package com.jiayuqicz.mygaode.map;
 
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +25,15 @@ public class MapFragment extends Fragment {
     private TextureMapView mapView = null;
     private AMap aMap = null;
 
+    private String SHOW_CAMPASS = "show_compass";
+    SharedPreferences share = null;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        //读取设置
+        share = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
         View rootView = inflater.inflate(R.layout.fragment_map,container,false);
         return rootView;
     }
@@ -45,7 +52,13 @@ public class MapFragment extends Fragment {
         aMap.setMyLocationEnabled(true);
 
         UiSettings uiSettings = aMap.getUiSettings();
-        uiSettings.setCompassEnabled(true);
+
+        //设置指南针
+        if (share.getBoolean(SHOW_CAMPASS, true))
+            uiSettings.setCompassEnabled(true);
+        else
+            uiSettings.setCompassEnabled(false);
+
         uiSettings.setMyLocationButtonEnabled(true);
         uiSettings.setZoomControlsEnabled(false);
         uiSettings.setAllGesturesEnabled(true);
