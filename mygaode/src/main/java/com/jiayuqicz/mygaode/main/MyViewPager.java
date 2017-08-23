@@ -12,6 +12,9 @@ import android.view.MotionEvent;
 public class MyViewPager extends ViewPager {
 
 
+    private boolean scroll = true;
+
+
     public MyViewPager(Context context) {
         super(context);
     }
@@ -23,12 +26,11 @@ public class MyViewPager extends ViewPager {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
 
-        //当前页面为地图页面的时候，关闭滑动，防止误触
-        if(this.getCurrentItem() == 0)
-            return false;
-
-        return super.onInterceptTouchEvent(ev);
+        return scroll && super.onInterceptTouchEvent(ev);
     }
 
+    public void setScroll(boolean scroll) {
+        this.scroll = scroll;
+    }
 
 }

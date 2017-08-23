@@ -13,12 +13,13 @@ import com.jiayuqicz.mygaode.map.MyPagerAdapter;
 import com.jiayuqicz.mygaode.search.SearchFragment;
 import com.jiayuqicz.mygaode.util.OfflineMapUtil;
 
-public class MainActivity extends AppCompatActivity implements SearchFragment.MyItemClickedListener
+public class MainActivity extends AppCompatActivity implements SearchFragment.MyItemClickedListener,
+        ViewPager.OnPageChangeListener
 {
 
     //记录当前的页面，解决重复点击相同的标签，导致页面的重新加载的bug
     private String currentFragment = null;
-    private ViewPager pager = null;
+    private MyViewPager pager = null;
 
     private String MAP = "mapFragment";
     private String SEARCH = "searchFragment";
@@ -42,12 +43,15 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     public void initView() {
 
         if(findViewById(R.id.viewPager)!=null) {
-            pager = (ViewPager) findViewById(R.id.viewPager);
+            pager = (MyViewPager) findViewById(R.id.viewPager);
             pager.setAdapter(new MyPagerAdapter(getFragmentManager()));
+            pager.addOnPageChangeListener(this);
         }
     }
 
     public void selectMapFragment(View view) {
+        //禁用手势滑动翻页
+        pager.setScroll(false);
 
         if(currentFragment == MAP)
             return;
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
 
     public void selectSearchFragment(View view) {
 
+        pager.setScroll(true);
+
         if (currentFragment == SEARCH)
             return;
         pager.setCurrentItem(1);
@@ -65,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     }
 
     public void selectWeatherFragment(View view) {
+
+        pager.setScroll(true);
 
         if(currentFragment == WEATHER)
             return;
@@ -74,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     }
 
     public void selectSettingFragment(View view) {
+
+        pager.setScroll(true);
 
         if(currentFragment == SETTINGS)
             return;
@@ -87,4 +97,38 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         mapFragment.setMaker(point);
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        //当处于地图页面时，禁用滑动手势
+        switch (position) {
+            case 0:
+                //当处于地图页面时，禁用滑动
+                pager.setScroll(false);
+                currentFragment = MAP;
+                break;
+            case 1:
+                pager.setScroll(true);
+                currentFragment = SEARCH;
+                break;
+            case 2:
+                pager.setScroll(true);
+                currentFragment = WEATHER;
+                break;
+            case 3:
+                pager.setScroll(true);
+                currentFragment = SETTINGS;
+                break;
+
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }

@@ -30,7 +30,8 @@ public class MapFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
         //读取设置
         share = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
