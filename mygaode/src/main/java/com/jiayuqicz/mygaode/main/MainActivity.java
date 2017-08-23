@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.amap.api.maps.MapsInitializer;
 import com.amap.api.services.core.LatLonPoint;
@@ -94,7 +95,10 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     @Override
     public void Locate(LatLonPoint point) {
         MapFragment mapFragment = (MapFragment) pager.getAdapter().instantiateItem(pager, 0);
-        mapFragment.locate(point);
+        if(point != null)
+            mapFragment.locate(point);
+        else
+            Toast.makeText(this, R.string.invalid_address, Toast.LENGTH_SHORT).show();
     }
 
     @Override

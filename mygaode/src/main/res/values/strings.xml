@@ -36,5 +36,8 @@
     <!-- 搜索-->
     <string name="Hint">去哪里</string>
 
+    <!--提示-->
+    <string name="invalid_address">无效的地址</string>
+
 
 </resources>
