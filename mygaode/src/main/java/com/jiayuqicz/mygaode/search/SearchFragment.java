@@ -40,7 +40,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
     private MyItemClickedListener mCallback = null;
 
     public interface MyItemClickedListener {
-        void setPoint(LatLonPoint point);
+        void Locate(LatLonPoint point);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         LatLonPoint point = (LatLonPoint) view.getTag();
-        mCallback.setPoint(point);
+        mCallback.Locate(point);
         MainActivity activity = (MainActivity) mCallback;
         activity.selectMapFragment(null);
 

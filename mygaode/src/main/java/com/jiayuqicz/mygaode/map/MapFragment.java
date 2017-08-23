@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
@@ -61,7 +63,8 @@ public class MapFragment extends Fragment {
             uiSettings.setCompassEnabled(false);
 
         uiSettings.setMyLocationButtonEnabled(true);
-        uiSettings.setZoomControlsEnabled(false);
+        //开启缩放按钮
+        uiSettings.setZoomControlsEnabled(true);
         uiSettings.setAllGesturesEnabled(true);
     }
 
@@ -89,9 +92,31 @@ public class MapFragment extends Fragment {
         mapView.onSaveInstanceState(outState);
     }
 
-    public void setMaker(LatLonPoint makerPoint) {
-        MarkerOptions options = new MarkerOptions().position(new LatLng(makerPoint.getLatitude(),
-                makerPoint.getLongitude()));
+    public void addMaker(LatLonPoint makerPoint) {
+
+        double lat = makerPoint.getLatitude();
+        double lon = makerPoint.getLongitude();
+
+        MarkerOptions options = new MarkerOptions().position(new LatLng(lat, lon));
         aMap.addMarker(options);
+
+    }
+
+    public void locate(LatLonPoint makerPoint) {
+
+        double lat = makerPoint.getLatitude();
+        double lon = makerPoint.getLongitude();
+
+        MarkerOptions options = new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker
+                (BitmapDescriptorFactory.HUE_RED)).position(new LatLng(lat, lon));
+        aMap.clear();
+        aMap.addMarker(options);
+
+//        Log.e("test", String.valueOf(aMap.getMinZoomLevel()));
+//        Log.e("test", String.valueOf(aMap.getMaxZoomLevel()));
+
+        //缩放范围： 3- 19
+        aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 15));
+
     }
 }

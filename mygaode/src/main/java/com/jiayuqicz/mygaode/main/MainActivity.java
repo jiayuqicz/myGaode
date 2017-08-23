@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     }
 
     @Override
-    public void setPoint(LatLonPoint point) {
+    public void Locate(LatLonPoint point) {
         MapFragment mapFragment = (MapFragment) pager.getAdapter().instantiateItem(pager, 0);
-        mapFragment.setMaker(point);
+        mapFragment.locate(point);
     }
 
     @Override
