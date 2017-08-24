@@ -38,7 +38,7 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weather, container, false);
+        return inflater.inflate(R.layout.main_fragment_weather, container, false);
     }
 
     @Override

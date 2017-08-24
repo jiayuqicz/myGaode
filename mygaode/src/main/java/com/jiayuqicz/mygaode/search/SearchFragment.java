@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        return inflater.inflate(R.layout.main_fragment_search, container, false);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
                 tips.add(hashMap);
             }
 
-            MySimpleAdapter adapter = new MySimpleAdapter(getActivity(), tips, R.layout.tips_tems_layout,
+            MySimpleAdapter adapter = new MySimpleAdapter(getActivity(), tips, R.layout.main_search_tips,
                     new String[] {"name", "address"}, new int[] {R.id.tip_name, R.id.tip_address});
             inputList.setAdapter(adapter);
             adapter.notifyDataSetChanged();

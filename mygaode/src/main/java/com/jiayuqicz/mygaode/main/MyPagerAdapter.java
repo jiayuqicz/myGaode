@@ -1,9 +1,10 @@
-package com.jiayuqicz.mygaode.map;
+package com.jiayuqicz.mygaode.main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
 
+import com.jiayuqicz.mygaode.map.MapFragment;
 import com.jiayuqicz.mygaode.search.SearchFragment;
 import com.jiayuqicz.mygaode.setting.SettingFragment;
 import com.jiayuqicz.mygaode.weather.WeatherFragment;

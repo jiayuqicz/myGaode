@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/title_layout"
+    <include layout="@layout/main_title"
         android:id="@+id/title" />
 
         <com.jiayuqicz.mygaode.main.MyViewPager xmlns:android="http://schemas.android.com/apk/res/android"

@@ -2,6 +2,7 @@ package com.jiayuqicz.mygaode.map;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,13 +17,15 @@ import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.services.core.LatLonPoint;
 import com.jiayuqicz.mygaode.R;
+import com.jiayuqicz.mygaode.route.RouteActivity;
 
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements AMap.OnMarkerClickListener{
 
     private TextureMapView mapView = null;
     private AMap aMap = null;
@@ -37,7 +40,7 @@ public class MapFragment extends Fragment {
         //读取设置
         share = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        View rootView = inflater.inflate(R.layout.fragment_map,container,false);
+        View rootView = inflater.inflate(R.layout.main_fragment_map,container,false);
         return rootView;
     }
 
@@ -46,6 +49,13 @@ public class MapFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mapView = (TextureMapView) getView().findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
+        initMap();
+    }
+
+
+    //初始化地图组件
+    private void initMap() {
+
         aMap = mapView.getMap();
         MyLocationStyle style = new MyLocationStyle();
         style.showMyLocation(true);
@@ -54,6 +64,11 @@ public class MapFragment extends Fragment {
         aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);
 
+        //设置marker点击监听器
+        aMap.setOnMarkerClickListener(this);
+
+
+        //获取地图的UI设置工具
         UiSettings uiSettings = aMap.getUiSettings();
 
         //设置指南针
@@ -62,6 +77,7 @@ public class MapFragment extends Fragment {
         else
             uiSettings.setCompassEnabled(false);
 
+        //开启定位按钮和小蓝点
         uiSettings.setMyLocationButtonEnabled(true);
         //开启缩放按钮
         uiSettings.setZoomControlsEnabled(true);
@@ -107,16 +123,24 @@ public class MapFragment extends Fragment {
         double lat = makerPoint.getLatitude();
         double lon = makerPoint.getLongitude();
 
-        MarkerOptions options = new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker
-                (BitmapDescriptorFactory.HUE_RED)).position(new LatLng(lat, lon));
+        MarkerOptions options = new MarkerOptions()
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                .position(new LatLng(lat, lon))
+                .title(getString(R.string.marker_title));
         aMap.clear();
-        aMap.addMarker(options);
-
-//        Log.e("test", String.valueOf(aMap.getMinZoomLevel()));
-//        Log.e("test", String.valueOf(aMap.getMaxZoomLevel()));
+        aMap.addMarker(options).showInfoWindow();
 
         //缩放范围： 3- 19
         aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 15));
 
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        Intent intent = new Intent(getActivity(), RouteActivity.class);
+        startActivity(intent);
+
+        return true;
     }
 }

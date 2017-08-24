@@ -10,7 +10,6 @@ import com.amap.api.maps.MapsInitializer;
 import com.amap.api.services.core.LatLonPoint;
 import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.map.MapFragment;
-import com.jiayuqicz.mygaode.map.MyPagerAdapter;
 import com.jiayuqicz.mygaode.search.SearchFragment;
 import com.jiayuqicz.mygaode.util.OfflineMapUtil;
 

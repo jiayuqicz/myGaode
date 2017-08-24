@@ -12,8 +12,8 @@
         android:background="@drawable/background"
         android:clickable="true"
         android:gravity="center"
-        android:text="@string/fragment1"
         android:onClick="selectMapFragment"
+        android:text="@string/fragment1"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -24,8 +24,8 @@
         android:background="@drawable/background"
         android:clickable="true"
         android:gravity="center"
-        android:text="@string/fragment3"
         android:onClick="selectSearchFragment"
+        android:text="@string/fragment3"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -36,8 +36,8 @@
         android:background="@drawable/background"
         android:clickable="true"
         android:gravity="center"
-        android:text="@string/fragment2"
         android:onClick="selectWeatherFragment"
+        android:text="@string/fragment2"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -48,7 +48,8 @@
         android:background="@drawable/background"
         android:clickable="true"
         android:gravity="center"
-        android:text="@string/fragment4"
         android:onClick="selectSettingFragment"
+        android:text="@string/fragment4"
         android:textColor="@android:color/white" />
+
 </LinearLayout>

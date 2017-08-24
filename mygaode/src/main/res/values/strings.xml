@@ -33,11 +33,25 @@
     <string name="map_gensture">开启地图界面的手势操作</string>
 
 
-    <!-- 搜索-->
+    <!--搜索-->
     <string name="Hint">去哪里</string>
 
     <!--提示-->
     <string name="invalid_address">无效的地址</string>
+
+    <!--地图-->
+    <string name="marker_title">点我查询路线</string>
+
+    <!--路线规划-->
+    <string name="route_walk">步行</string>
+    <string name="route_bus">公交</string>
+    <string name="route_car">驾车</string>
+
+    <string-array name="schedule">
+        <item>最省钱</item>
+        <item>时间短</item>
+        <item>少步行</item>
+    </string-array>
 
 
 </resources>
