@@ -30,6 +30,7 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
         AMap.OnMyLocationChangeListener{
 
     private TextureMapView mapView = null;
+
     private AMap aMap = null;
 
     private final String SHOW_CAMPASS = "show_compass";
@@ -41,12 +42,22 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
     private LatLonPoint end = null;
 
     private static MapFragment mapFragment = null;
+    private static MapFragment newInstance = null;
 
-    public static MapFragment getInstance() {
+    //多数情况下单例模式生成
+    public static MapFragment getFirstInstance() {
         if (mapFragment == null) {
             mapFragment = new MapFragment();
         }
         return mapFragment;
+    }
+
+    //路线规划时重新生成另一个地图实例
+    public static MapFragment getSecondInstance() {
+        if (newInstance == null) {
+            newInstance = new MapFragment();
+        }
+        return newInstance;
     }
 
     @Override
@@ -184,5 +195,9 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
             start.setLatitude(location.getLatitude());
             start.setLongitude(location.getLongitude());
         }
+    }
+
+    public AMap getAMap() {
+        return aMap;
     }
 }

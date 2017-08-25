@@ -1,11 +1,14 @@
 package com.jiayuqicz.mygaode.route;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.amap.api.maps.AMap;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.route.BusRouteResult;
@@ -21,7 +24,7 @@ import com.jiayuqicz.mygaode.map.MapFragment;
 import com.jiayuqicz.mygaode.util.ToastUtil;
 
 
-public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRouteSearchListener {
+public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRouteSearchListener, AdapterView.OnItemLongClickListener {
 
     private Byte schedule_index;
     private String[] schedule = null;
@@ -30,6 +33,9 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     private LatLonPoint end = null;
     private RouteSearch routeSearch = null;
     private ListView routeList = null;
+    private AMap aMap = null;
+
+    private MapFragment mapFragment = null;
 
     private String city = "北京";
 
@@ -57,9 +63,14 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
         end = getIntent().getParcelableExtra(MapFragment.INTENT_DATA_ID_END);
 
         routeList = (ListView) findViewById(R.id.route_list);
+        routeList.setOnItemLongClickListener(this);
 
         routeSearch = new RouteSearch(this);
         routeSearch.setRouteSearchListener(this);
+
+        mapFragment = MapFragment.getSecondInstance();
+        aMap = mapFragment.getAMap();
+
     }
 
     public void changeSchedule(View view) {
@@ -128,5 +139,18 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     @Override
     public void onRideRouteSearched(RideRouteResult rideRouteResult, int i) {
 
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.route_container, mapFragment);
+        //清空地图
+        aMap.clear();
+        transaction.isAddToBackStackAllowed();
+        transaction.commit();
+
+        return true;
     }
 }

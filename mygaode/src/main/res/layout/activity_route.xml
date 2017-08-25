@@ -7,7 +7,7 @@
         layout="@layout/route_title" />
 
     <FrameLayout
-        android:id="@+id/route_content"
+        android:id="@+id/route_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

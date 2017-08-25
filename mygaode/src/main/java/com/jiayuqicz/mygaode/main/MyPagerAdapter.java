@@ -23,7 +23,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 
     public MyPagerAdapter(FragmentManager fm) {
         super(fm);
-        mapFragment = MapFragment.getInstance();
+        mapFragment = MapFragment.getFirstInstance();
         weatherFragment = WeatherFragment.getIntance();
         settingFragment = SettingFragment.getInstance();
         searchFragment = SearchFragment.getInstance();
