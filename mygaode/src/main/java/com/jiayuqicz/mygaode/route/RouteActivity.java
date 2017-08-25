@@ -146,8 +146,6 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.route_container, mapFragment);
-        //清空地图
-        aMap.clear();
         transaction.isAddToBackStackAllowed();
         transaction.commit();
 
