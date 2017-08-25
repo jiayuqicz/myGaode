@@ -34,6 +34,15 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     private WeatherSearchQuery query = null;
     private WeatherSearch weatherSearch = null;
 
+    private static WeatherFragment weatherFragment = null;
+
+    public static WeatherFragment getIntance() {
+        if (weatherFragment == null) {
+            weatherFragment = new WeatherFragment();
+        }
+        return weatherFragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

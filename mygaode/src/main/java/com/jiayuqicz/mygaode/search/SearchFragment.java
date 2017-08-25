@@ -18,8 +18,8 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.help.Inputtips;
 import com.amap.api.services.help.InputtipsQuery;
 import com.amap.api.services.help.Tip;
-import com.jiayuqicz.mygaode.main.MainActivity;
 import com.jiayuqicz.mygaode.R;
+import com.jiayuqicz.mygaode.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,11 +36,19 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
     private ListView inputList;
     private AutoCompleteTextView searchBar;
+    private static SearchFragment searchFragment = null;
 
     private MyItemClickedListener mCallback = null;
 
     public interface MyItemClickedListener {
         void Locate(LatLonPoint point);
+    }
+
+    public static SearchFragment getInstance() {
+        if (searchFragment == null) {
+            searchFragment = new SearchFragment();
+        }
+        return searchFragment;
     }
 
     @Override

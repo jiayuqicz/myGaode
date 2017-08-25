@@ -9,6 +9,15 @@ import com.jiayuqicz.mygaode.R;
 
 public class SettingFragment extends PreferenceFragment {
 
+    public static SettingFragment settingFragment = null;
+
+    public static SettingFragment getInstance() {
+        if (settingFragment == null) {
+            settingFragment = new SettingFragment();
+        }
+        return settingFragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

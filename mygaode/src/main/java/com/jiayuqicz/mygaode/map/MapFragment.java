@@ -4,6 +4,7 @@ package com.jiayuqicz.mygaode.map;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -25,23 +26,41 @@ import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.route.RouteActivity;
 
 
-public class MapFragment extends Fragment implements AMap.OnMarkerClickListener{
+public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
+        AMap.OnMyLocationChangeListener{
 
     private TextureMapView mapView = null;
     private AMap aMap = null;
 
-    private String SHOW_CAMPASS = "show_compass";
-    SharedPreferences share = null;
+    private final String SHOW_CAMPASS = "show_compass";
+    public final static String INTENT_DATA_ID_START = "com.jiayuqicz.mygaode.map.start";
+    public final static String INTENT_DATA_ID_END = "com.jiayuqicz.mygaode.map.end";
+
+    private SharedPreferences share = null;
+    private LatLonPoint start = null;
+    private LatLonPoint end = null;
+
+    private static MapFragment mapFragment = null;
+
+    public static MapFragment getInstance() {
+        if (mapFragment == null) {
+            mapFragment = new MapFragment();
+        }
+        return mapFragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        //读取设置
+        share = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-        //读取设置
-        share = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-        View rootView = inflater.inflate(R.layout.main_fragment_map,container,false);
-        return rootView;
+        return inflater.inflate(R.layout.main_fragment_map,container,false);
     }
 
     @Override
@@ -56,7 +75,10 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener{
     //初始化地图组件
     private void initMap() {
 
+        //获取地图控制器
         aMap = mapView.getMap();
+
+        //开启小蓝点定位
         MyLocationStyle style = new MyLocationStyle();
         style.showMyLocation(true);
         style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
@@ -66,8 +88,6 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener{
 
         //设置marker点击监听器
         aMap.setOnMarkerClickListener(this);
-
-
         //获取地图的UI设置工具
         UiSettings uiSettings = aMap.getUiSettings();
 
@@ -77,10 +97,13 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener{
         else
             uiSettings.setCompassEnabled(false);
 
-        //开启定位按钮和小蓝点
+        //开启定位按钮
         uiSettings.setMyLocationButtonEnabled(true);
+        //开启定位的监听器
+        aMap.setOnMyLocationChangeListener(this);
         //开启缩放按钮
         uiSettings.setZoomControlsEnabled(true);
+        //开启手势地图操作
         uiSettings.setAllGesturesEnabled(true);
     }
 
@@ -123,6 +146,14 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener{
         double lat = makerPoint.getLatitude();
         double lon = makerPoint.getLongitude();
 
+        if (end == null)
+            end = new LatLonPoint(lat, lon);
+        else {
+            end.setLatitude(lat);
+            end.setLongitude(lon);
+        }
+
+
         MarkerOptions options = new MarkerOptions()
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 .position(new LatLng(lat, lon))
@@ -137,10 +168,21 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener{
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         Intent intent = new Intent(getActivity(), RouteActivity.class);
+        intent.putExtra(INTENT_DATA_ID_START, this.start);
+        intent.putExtra(INTENT_DATA_ID_END,this.end);
         startActivity(intent);
-
         return true;
+    }
+
+    @Override
+    public void onMyLocationChange(Location location) {
+
+        if(start == null)
+            start = new LatLonPoint(location.getLatitude(), location.getLongitude());
+        else {
+            start.setLatitude(location.getLatitude());
+            start.setLongitude(location.getLongitude());
+        }
     }
 }
