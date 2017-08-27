@@ -1,4 +1,4 @@
-package com.jiayuqicz.mygaode.route;
+package com.jiayuqicz.mygaode.route.bus;
 
 import android.content.Context;
 import android.view.View;
@@ -16,11 +16,9 @@ import java.util.List;
 public class BusResultListAdapter extends BaseAdapter {
 	private Context mContext;
 	private List<BusPath> mBusPathList;
-	private BusRouteResult mBusRouteResult;
 
 	public BusResultListAdapter(Context context, BusRouteResult busrouteresult) {
 		mContext = context;
-		mBusRouteResult = busrouteresult;
 		mBusPathList = busrouteresult.getPaths();
 	}
 	

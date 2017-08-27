@@ -1,7 +1,10 @@
 package com.jiayuqicz.mygaode.util;
 
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.route.BusPath;
 import com.amap.api.services.route.BusStep;
+import com.amap.api.services.route.DrivePath;
 import com.amap.api.services.route.RouteBusLineItem;
 import com.amap.api.services.route.RouteRailwayItem;
 import com.jiayuqicz.mygaode.R;
@@ -14,6 +17,13 @@ import java.util.List;
  */
 
 public class AMapUtil {
+
+    /**
+     * 把LatLonPoint对象转化为LatLon对象
+     */
+    public static LatLng convertToLatLng(LatLonPoint latLonPoint) {
+        return new LatLng(latLonPoint.getLatitude(), latLonPoint.getLongitude());
+    }
 
 
     public static String getFriendlyTime(int second) {
@@ -148,7 +158,6 @@ public class AMapUtil {
                     title.append(buslineName);
                     title.append(" / ");
                 }
-//					RouteBusLineItem busline = busStep.getBusLines().get(0);
 
                 sb.append(title.substring(0, title.length() - 3));
                 sb.append(" > ");
@@ -175,6 +184,37 @@ public class AMapUtil {
         String walkDis = getFriendlyLength((int) walkDistance);
         return String.valueOf(time + " | " + subDis + " | 步行" + walkDis);
     }
+
+    public static String getDrivePathTitle(DrivePath drivePath) {
+        if (drivePath == null) {
+            return String.valueOf("");
+        }
+
+        StringBuffer sb = new StringBuffer();
+        int stat = drivePath.getRestriction();
+        if (stat == 0 ) {
+            sb.append("道路未限行");
+        }
+        else if (stat == 1){
+            sb.append("道路限行");
+        }
+
+        return sb.substring(0, sb.length());
+    }
+
+    public static String getDrivePathDes(DrivePath drivePath) {
+        if (drivePath == null) {
+            return String.valueOf("");
+        }
+        long second = drivePath.getDuration();
+        String time = getFriendlyTime((int) second);
+        float subDistance = drivePath.getDistance();
+        String subDis = getFriendlyLength((int) subDistance);
+        int trafficlights = drivePath.getTotalTrafficlights();
+        return String.valueOf(time + " | " + subDis + " | 红绿灯" + trafficlights);
+    }
+
+
 
     public static String getSimpleBusLineName(String busLineName) {
         if (busLineName == null) {
