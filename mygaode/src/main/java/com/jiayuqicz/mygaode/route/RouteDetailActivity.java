@@ -11,6 +11,7 @@ import com.amap.api.services.route.WalkPath;
 import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.route.bus.BusDetailListAdapter;
 import com.jiayuqicz.mygaode.route.car.CarDetailListAdapter;
+import com.jiayuqicz.mygaode.route.walk.WalkDetailListAdapter;
 
 public class RouteDetailActivity extends AppCompatActivity {
 
@@ -48,7 +49,11 @@ public class RouteDetailActivity extends AppCompatActivity {
                 break;
             }
             case walk: {
-
+                walkPath = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
+                ListView detalList = (ListView) findViewById(R.id.bus_detial);
+                WalkDetailListAdapter adapter = new WalkDetailListAdapter(this,walkPath.getSteps());
+                detalList.setAdapter(adapter);
+                break;
             }
         }
 

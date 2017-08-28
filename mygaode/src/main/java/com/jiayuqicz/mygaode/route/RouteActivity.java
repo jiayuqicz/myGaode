@@ -26,6 +26,7 @@ import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.map.MapFragment;
 import com.jiayuqicz.mygaode.route.bus.BusResultListAdapter;
 import com.jiayuqicz.mygaode.route.car.CarResultListAdapter;
+import com.jiayuqicz.mygaode.route.walk.WalkResultListAdapter;
 import com.jiayuqicz.mygaode.util.ToastUtil;
 
 
@@ -69,7 +70,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
     private void initView() {
         //出行方式
-        routeType = car;
+        routeType = walk;
         //搜索的路径模式
         schedule_index = 0;
 
@@ -173,7 +174,17 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     }
 
     @Override
-    public void onWalkRouteSearched(WalkRouteResult walkRouteResult, int i) {
+    public void onWalkRouteSearched(WalkRouteResult result, int errorCode) {
+
+        if (errorCode == AMapException.CODE_AMAP_SUCCESS) {
+            if (result != null && result.getPaths() != null) {
+                if (result.getPaths().size() > 0) {
+                    walkRouteResult = result;
+                    WalkResultListAdapter adapter = new WalkResultListAdapter(this, result);
+                    routeList.setAdapter(adapter);
+                }
+            }
+        }
 
     }
 
@@ -211,5 +222,20 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                 break;
             }
         }
+    }
+
+    public void searchBus(View view) {
+        routeType = bus;
+        searchRouteResult(bus, RouteSearch.BUS_DEFAULT);
+    }
+
+    public void searchCar(View view) {
+        routeType = car;
+        searchRouteResult(car, RouteSearch.BUS_DEFAULT);
+    }
+
+    public void searchWalk(View view) {
+        routeType = walk;
+        searchRouteResult(walk, RouteSearch.BUS_DEFAULT);
     }
 }

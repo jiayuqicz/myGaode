@@ -7,6 +7,7 @@ import com.amap.api.services.route.BusStep;
 import com.amap.api.services.route.DrivePath;
 import com.amap.api.services.route.RouteBusLineItem;
 import com.amap.api.services.route.RouteRailwayItem;
+import com.amap.api.services.route.WalkPath;
 import com.jiayuqicz.mygaode.R;
 
 import java.text.DecimalFormat;
@@ -212,6 +213,30 @@ public class AMapUtil {
         String subDis = getFriendlyLength((int) subDistance);
         int trafficlights = drivePath.getTotalTrafficlights();
         return String.valueOf(time + " | " + subDis + " | 红绿灯" + trafficlights);
+    }
+
+    public static String getWalkPathTitle(WalkPath walkPath) {
+        if (walkPath == null) {
+            return String.valueOf("");
+        }
+
+        StringBuffer sb = new StringBuffer();
+        long time = walkPath.getDuration();
+
+            sb.append(getFriendlyTime((int) time));
+
+        return sb.substring(0, sb.length());
+    }
+
+    public static String getWalkPathDes(WalkPath walkPath) {
+        if (walkPath == null) {
+            return String.valueOf("");
+        }
+
+        float subDistance = walkPath.getDistance();
+        String Dis = getFriendlyLength((int) subDistance);
+
+        return String.valueOf( Dis );
     }
 
 
