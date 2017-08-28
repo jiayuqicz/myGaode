@@ -1,6 +1,5 @@
 package com.jiayuqicz.mygaode.util;
 
-import android.content.Context;
 import android.os.Environment;
 
 /**
@@ -13,21 +12,20 @@ public class OfflineMapUtil {
      * 获取map 缓存和读取目录
      */
 
-    public static String getSdCacheDir(Context context) {
+    public static String getSdCacheDir() {
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
             java.io.File fExternalStorageDirectory = Environment
                     .getExternalStorageDirectory();
             java.io.File autonaviDir = new java.io.File(
                     fExternalStorageDirectory, "amapsdk");
-            boolean result = false;
             if (!autonaviDir.exists()) {
-                result = autonaviDir.mkdir();
+                autonaviDir.mkdir();
             }
             java.io.File minimapDir = new java.io.File(autonaviDir,
                     "offlineMap");
             if (!minimapDir.exists()) {
-                result = minimapDir.mkdir();
+                minimapDir.mkdir();
             }
             return minimapDir.toString() + "/";
         } else {

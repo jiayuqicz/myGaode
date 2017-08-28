@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.MapsInitializer;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
@@ -24,6 +25,7 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.services.core.LatLonPoint;
 import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.route.RouteActivity;
+import com.jiayuqicz.mygaode.util.OfflineMapUtil;
 
 
 public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
@@ -64,6 +66,9 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
     public void onCreate(@Nullable Bundle savedInstanceState) {
         //读取设置
         share = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //设置离线地图的目录
+        MapsInitializer.sdcardDir = OfflineMapUtil.getSdCacheDir();
+
         super.onCreate(savedInstanceState);
     }
 

@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.amap.api.maps.MapsInitializer;
 import com.amap.api.services.core.LatLonPoint;
 import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.map.MapFragment;
 import com.jiayuqicz.mygaode.search.SearchFragment;
-import com.jiayuqicz.mygaode.util.OfflineMapUtil;
 
 public class MainActivity extends AppCompatActivity implements SearchFragment.MyItemClickedListener,
         ViewPager.OnPageChangeListener
@@ -34,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         if(savedInstanceState != null) {
             return;
         }
-        //设置离线地图的目录
-        MapsInitializer.sdcardDir = OfflineMapUtil.getSdCacheDir(this);
         //初始化界面
         initView();
     }
