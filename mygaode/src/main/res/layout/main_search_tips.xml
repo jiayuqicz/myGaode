@@ -5,13 +5,14 @@
 
     <TextView
         android:id="@+id/tip_name"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/White"
         android:layout_marginStart="10dp"
         android:text="@string/Null"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/tip_address"
@@ -19,8 +20,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/Palewhite"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/Null"
-        android:textSize="14sp"/>
+        android:textSize="13sp"/>
 
 </LinearLayout>

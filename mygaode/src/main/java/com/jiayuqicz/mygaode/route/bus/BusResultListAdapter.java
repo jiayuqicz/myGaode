@@ -42,7 +42,7 @@ public class BusResultListAdapter extends BaseAdapter {
 		ViewHolder holder = null;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = View.inflate(mContext, R.layout.route_bus_item, null);
+			convertView = View.inflate(mContext, R.layout.route_result_item, null);
 			holder.title = (TextView) convertView.findViewById(R.id.bus_item_title);
 			holder.des = (TextView) convertView.findViewById(R.id.bus_item_des);
 			convertView.setTag(holder);

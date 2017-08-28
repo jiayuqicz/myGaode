@@ -57,7 +57,7 @@ public class CarDetailListAdapter extends BaseAdapter {
 		ViewHolder holder = null;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = View.inflate(mContext, R.layout.item_bus_segment,
+			convertView = View.inflate(mContext, R.layout.route_detail_item,
 					null);
 			holder.driveDirIcon = (ImageView) convertView
 					.findViewById(R.id.bus_dir_icon);

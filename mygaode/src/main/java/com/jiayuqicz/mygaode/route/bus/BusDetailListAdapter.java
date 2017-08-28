@@ -76,7 +76,7 @@ public class BusDetailListAdapter extends BaseAdapter {
 		ViewHolder holder = null;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = View.inflate(activity, R.layout.item_bus_segment, null);
+			convertView = View.inflate(activity, R.layout.route_detail_item, null);
 			holder.parent = (RelativeLayout) convertView
 					.findViewById(R.id.bus_item);
 			holder.busLineName = (TextView) convertView
@@ -239,7 +239,7 @@ public class BusDetailListAdapter extends BaseAdapter {
 
 		private void addBusStation(BusStationItem station) {
 			LinearLayout ll = (LinearLayout) View.inflate(activity,
-					R.layout.item_bus_segment_ex, null);
+					R.layout.route_detail_item_ex, null);
 			TextView tv = (TextView) ll
 					.findViewById(R.id.bus_line_station_name);
 			tv.setText(station.getBusStationName());
@@ -249,7 +249,7 @@ public class BusDetailListAdapter extends BaseAdapter {
 		
 		private void addRailwayStation(RailwayStationItem station) {
 			LinearLayout ll = (LinearLayout) View.inflate(activity,
-					R.layout.item_bus_segment_ex, null);
+					R.layout.route_detail_item_ex, null);
 			TextView tv = (TextView) ll
 					.findViewById(R.id.bus_line_station_name);
             tv.setTextColor(ContextCompat.getColor(activity, R.color.Palewhite));
