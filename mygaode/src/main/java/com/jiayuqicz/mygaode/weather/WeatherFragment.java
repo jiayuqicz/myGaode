@@ -34,13 +34,8 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     private WeatherSearchQuery query = null;
     private WeatherSearch weatherSearch = null;
 
-    private static WeatherFragment weatherFragment = null;
-
-    public static WeatherFragment getIntance() {
-        if (weatherFragment == null) {
-            weatherFragment = new WeatherFragment();
-        }
-        return weatherFragment;
+    public static WeatherFragment newIntance() {
+        return new WeatherFragment();
     }
 
     @Override
@@ -119,7 +114,12 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
                 LocalDayWeatherForecast localDayWeatherForecast;
                 TextView textView;
 
-                for (int i = 1; i < forcastList.size(); i++) {
+                for (int i = 0; i < forcastList.size(); i++) {
+
+
+
+
+                    //获取第i天的天气
                     localDayWeatherForecast= forcastList.get(i);
 
                     //日期

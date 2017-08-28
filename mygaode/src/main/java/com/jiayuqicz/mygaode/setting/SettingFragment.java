@@ -9,13 +9,8 @@ import com.jiayuqicz.mygaode.R;
 
 public class SettingFragment extends PreferenceFragment {
 
-    public static SettingFragment settingFragment = null;
-
-    public static SettingFragment getInstance() {
-        if (settingFragment == null) {
-            settingFragment = new SettingFragment();
-        }
-        return settingFragment;
+    public static SettingFragment newInstance() {
+        return new SettingFragment();
     }
 
     @Override

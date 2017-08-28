@@ -318,6 +318,51 @@
             android:textSize="6sp" />
 
         <TextView
+            android:tag="Date_value_forcast_day0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="fill_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+        <TextView
+            android:tag="weather_value_forcast_day0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="fill_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+        <TextView
+            android:tag="temperature_value_forcast_day0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="fill_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="fill_horizontal"
+            android:textAlignment="center"
+            android:text="@string/Null"
+            android:textColor="@color/White"
+            android:textSize="6sp" />
+
+        <TextView
             android:tag="Date_value_forcast_day1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

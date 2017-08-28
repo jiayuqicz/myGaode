@@ -36,7 +36,6 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
     private ListView inputList;
     private AutoCompleteTextView searchBar;
-    private static SearchFragment searchFragment = null;
 
     private MyItemClickedListener mCallback = null;
 
@@ -44,11 +43,8 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
         void Locate(LatLonPoint point);
     }
 
-    public static SearchFragment getInstance() {
-        if (searchFragment == null) {
-            searchFragment = new SearchFragment();
-        }
-        return searchFragment;
+    public static SearchFragment newInstance() {
+        return new SearchFragment();
     }
 
     @Override
@@ -122,6 +118,5 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
         activity.selectMapFragment(null);
 
     }
-
 
 }

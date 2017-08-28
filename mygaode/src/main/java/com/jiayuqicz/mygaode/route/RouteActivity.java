@@ -70,7 +70,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
     private void initView() {
         //出行方式
-        routeType = walk;
+        routeType = bus;
         //搜索的路径模式
         schedule_index = 0;
 
@@ -87,7 +87,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
         routeSearch = new RouteSearch(this);
         routeSearch.setRouteSearchListener(this);
 
-        mapFragment = MapFragment.getSecondInstance();
+        mapFragment = MapFragment.newInstance();
         aMap = mapFragment.getAMap();
 
     }
@@ -156,17 +156,6 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
                     CarResultListAdapter adapter = new CarResultListAdapter(this, result);
                     routeList.setAdapter(adapter);
-
-//                    final DrivePath drivePath = result.getPaths().get(0);
-//                    DrivingRouteOverlay drivingRouteOverlay = new DrivingRouteOverlay(
-//                            this, aMap, drivePath,
-//                            result.getStartPos(),
-//                            result.getTargetPos(), null);
-//                    drivingRouteOverlay.setNodeIconVisibility(false);//设置节点marker是否显示
-//                    drivingRouteOverlay.setIsColorfulline(true);//是否用颜色展示交通拥堵情况，默认true
-//                    drivingRouteOverlay.removeFromMap();
-//                    drivingRouteOverlay.addToMap();
-//                    drivingRouteOverlay.zoomToSpan();
 
                 }
             }

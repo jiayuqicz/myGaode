@@ -43,23 +43,9 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
     private LatLonPoint start = null;
     private LatLonPoint end = null;
 
-    private static MapFragment mapFragment = null;
-    private static MapFragment newInstance = null;
-
-    //多数情况下单例模式生成
-    public static MapFragment getFirstInstance() {
-        if (mapFragment == null) {
-            mapFragment = new MapFragment();
-        }
-        return mapFragment;
-    }
-
-    //路线规划时重新生成另一个地图实例
-    public static MapFragment getSecondInstance() {
-        if (newInstance == null) {
-            newInstance = new MapFragment();
-        }
-        return newInstance;
+    //便于维护，传递参数数据
+    public static MapFragment newInstance() {
+        return new MapFragment();
     }
 
     @Override
