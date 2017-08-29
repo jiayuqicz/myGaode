@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.amap.api.services.route.BusPath;
 import com.amap.api.services.route.DrivePath;
@@ -31,10 +32,15 @@ public class RouteDetailActivity extends AppCompatActivity {
     }
 
     private void intView() {
+
+        TextView title = (TextView) findViewById(R.id.detail_title);
+
         Intent intent = getIntent();
         int type = intent.getIntExtra(RouteActivity.ROUTE_TYPE, 0);
         switch (type) {
             case bus: {
+                //设置标题
+                title.setText(getString(R.string.detail_title_bus));
                 busPath = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
                 ListView detailList = (ListView) findViewById(R.id.bus_detial);
                 BusDetailListAdapter adapter = new BusDetailListAdapter(this, busPath.getSteps());
@@ -42,6 +48,7 @@ public class RouteDetailActivity extends AppCompatActivity {
                 break;
             }
             case car: {
+                title.setText(getString(R.string.detail_title_car));
                 drivePath = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
                 ListView detailList = (ListView) findViewById(R.id.bus_detial);
                 CarDetailListAdapter adapter = new CarDetailListAdapter(this, drivePath.getSteps());
@@ -49,6 +56,7 @@ public class RouteDetailActivity extends AppCompatActivity {
                 break;
             }
             case walk: {
+                title.setText(getString(R.string.detail_title_walk));
                 walkPath = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
                 ListView detalList = (ListView) findViewById(R.id.bus_detial);
                 WalkDetailListAdapter adapter = new WalkDetailListAdapter(this,walkPath.getSteps());

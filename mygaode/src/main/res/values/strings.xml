@@ -53,7 +53,10 @@
         <item>少步行</item>
     </string-array>
 
-    <!--公交详情界面-->
-    <string name="bus_detail_title">公交路线详情</string>
+    <!--详情界面-->
+    <string name="detail_title_bus">公交路线详情</string>
+    <string name="detail_title_car">驾车路线详情</string>
+    <string name="detail_title_walk">步行路线详情</string>
+
 
 </resources>
