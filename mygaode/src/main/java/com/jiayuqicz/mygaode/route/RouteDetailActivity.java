@@ -9,15 +9,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.amap.api.services.route.Path;
+import com.amap.api.services.route.RouteResult;
 import com.jiayuqicz.mygaode.R;
-import com.jiayuqicz.mygaode.map.MapFragment;
 
 
 public class RouteDetailActivity extends AppCompatActivity {
 
-    private MapFragment mapFragment = null;
+    private RouteMapFragment mapFragment;
     private RouteListFragment listFragment = null;
     private FragmentTransaction transaction = null;
+    private RouteResult result = null;
+    private Path path;
 
     private boolean flag = false;
     private int routeType;
@@ -31,6 +33,8 @@ public class RouteDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_detail);
         intView();
+        addFragment(mapFragment);
+        hideFragment(mapFragment);
         addFragment(listFragment);
         switchRouteType(routeType);
     }
@@ -38,22 +42,30 @@ public class RouteDetailActivity extends AppCompatActivity {
     private void intView() {
         Intent intent = getIntent();
         routeType = intent.getIntExtra(RouteActivity.ROUTE_TYPE, 0);
-        Path path = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
-        mapFragment = MapFragment.newInstance();
+        path = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
+        result = intent.getParcelableExtra(RouteActivity.ROUTE_RESULT);
+        mapFragment = RouteMapFragment.newInstance(path, result);
         listFragment = RouteListFragment.newInstance(path, routeType);
     }
 
-    private void addFragment(Fragment fragment) {
+    private void showFragment(Fragment fragment) {
+
         transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.detail_container, fragment);
-        transaction.isAddToBackStackAllowed();
+        transaction.show(fragment);
         transaction.commit();
     }
 
-    private void replaceFragment(Fragment fragment) {
+    private void hideFragment(Fragment fragment) {
+
         transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.detail_container, fragment);
-        transaction.isAddToBackStackAllowed();
+        transaction.hide(fragment);
+        transaction.commit();
+    }
+
+    private void addFragment(Fragment fragment) {
+
+        transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.detail_container, fragment);
         transaction.commit();
     }
 
@@ -80,10 +92,14 @@ public class RouteDetailActivity extends AppCompatActivity {
 
     public void switchMap(View view) {
         flag = !flag;
-        if(flag) {
-            replaceFragment(mapFragment);
-            return;
+        if (flag) {
+            hideFragment(listFragment);
+            showFragment(mapFragment);
         }
-        replaceFragment(listFragment);
+        else {
+            hideFragment(mapFragment);
+            showFragment(listFragment);
+        }
+
     }
 }

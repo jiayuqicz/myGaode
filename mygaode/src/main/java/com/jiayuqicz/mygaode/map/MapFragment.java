@@ -32,10 +32,9 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
         AMap.OnMyLocationChangeListener{
 
     private TextureMapView mapView = null;
-
-    private AMap aMap = null;
-
+    protected AMap aMap = null;
     private final String SHOW_CAMPASS = "show_compass";
+
     public final static String INTENT_DATA_ID_START = "com.jiayuqicz.mygaode.map.start";
     public final static String INTENT_DATA_ID_END = "com.jiayuqicz.mygaode.map.end";
 
@@ -75,7 +74,7 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
 
 
     //初始化地图组件
-    private void initMap() {
+    protected void initMap() {
 
         //获取地图控制器
         aMap = mapView.getMap();
@@ -186,9 +185,5 @@ public class MapFragment extends Fragment implements AMap.OnMarkerClickListener,
             start.setLatitude(location.getLatitude());
             start.setLongitude(location.getLongitude());
         }
-    }
-
-    public AMap getAMap() {
-        return aMap;
     }
 }

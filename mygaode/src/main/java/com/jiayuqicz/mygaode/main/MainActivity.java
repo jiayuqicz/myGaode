@@ -130,4 +130,16 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        pager.onSaveInstanceState();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        pager.onRestoreInstanceState(savedInstanceState);
+    }
 }

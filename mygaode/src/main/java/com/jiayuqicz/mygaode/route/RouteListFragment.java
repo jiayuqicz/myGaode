@@ -60,7 +60,6 @@ public class RouteListFragment extends Fragment {
     }
 
 
-
     public void switchRouteType(int type) {
 
         switch (type) {

@@ -49,6 +49,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
     public static String DETAIL_INTENT = "detail_intent";
     public static String ROUTE_TYPE = "route_type";
+    public static String ROUTE_RESULT = "route_result";
 
     private static final int bus = 0;
     private static final int car = 1;
@@ -184,6 +185,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                 BusPath path = busRouteResult.getPaths().get(position);
                 intent.putExtra(DETAIL_INTENT, path);
                 intent.putExtra(ROUTE_TYPE, bus);
+                intent.putExtra(ROUTE_RESULT, busRouteResult);
                 startActivity(intent);
                 break;
             }
@@ -191,6 +193,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                 Intent intent = new Intent(this, RouteDetailActivity.class);
                 DrivePath path = driveRouteResult.getPaths().get(position);
                 intent.putExtra(DETAIL_INTENT, path);
+                intent.putExtra(ROUTE_RESULT, driveRouteResult);
                 intent.putExtra(ROUTE_TYPE, car);
                 startActivity(intent);
                 break;
@@ -199,6 +202,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                 Intent intent = new Intent(this, RouteDetailActivity.class);
                 WalkPath path = walkRouteResult.getPaths().get(position);
                 intent.putExtra(DETAIL_INTENT, path);
+                intent.putExtra(ROUTE_RESULT, walkRouteResult);
                 intent.putExtra(ROUTE_TYPE, walk);
                 startActivity(intent);
                 break;
