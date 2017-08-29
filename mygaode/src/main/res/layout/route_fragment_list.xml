@@ -3,13 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include android:id="@+id/route_title"
-        layout="@layout/route_title" />
-
-    <ListView
-        android:id="@+id/route_list"
+    <ListView android:id="@+id/bus_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

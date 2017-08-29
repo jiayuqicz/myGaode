@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.amap.api.maps.AMap;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.route.BusPath;
@@ -41,13 +40,10 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     private LatLonPoint end = null;
     private RouteSearch routeSearch = null;
     private ListView routeList = null;
-    private AMap aMap = null;
 
     private BusRouteResult busRouteResult = null;
     private DriveRouteResult driveRouteResult = null;
     private WalkRouteResult walkRouteResult = null;
-
-    private MapFragment mapFragment = null;
 
     private String city = "北京";
 
@@ -86,9 +82,6 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
         routeSearch = new RouteSearch(this);
         routeSearch.setRouteSearchListener(this);
-
-        mapFragment = MapFragment.newInstance();
-        aMap = mapFragment.getAMap();
 
     }
 

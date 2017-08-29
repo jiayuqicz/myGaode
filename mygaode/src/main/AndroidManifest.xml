@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".route.RouteActivity" />
-        <activity android:name=".route.RouteDetailActivity"></activity>
+        <activity android:name=".route.RouteDetailActivity" />
     </application>
 
 </manifest>

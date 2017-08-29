@@ -1,24 +1,26 @@
 package com.jiayuqicz.mygaode.route;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
+import android.view.View;
 import android.widget.TextView;
 
-import com.amap.api.services.route.BusPath;
-import com.amap.api.services.route.DrivePath;
-import com.amap.api.services.route.WalkPath;
+import com.amap.api.services.route.Path;
 import com.jiayuqicz.mygaode.R;
-import com.jiayuqicz.mygaode.route.bus.BusDetailListAdapter;
-import com.jiayuqicz.mygaode.route.car.CarDetailListAdapter;
-import com.jiayuqicz.mygaode.route.walk.WalkDetailListAdapter;
+import com.jiayuqicz.mygaode.map.MapFragment;
+
 
 public class RouteDetailActivity extends AppCompatActivity {
 
-    private BusPath busPath = null;
-    private DrivePath drivePath = null;
-    private WalkPath walkPath =null;
+    private MapFragment mapFragment = null;
+    private RouteListFragment listFragment = null;
+    private FragmentTransaction transaction = null;
+
+    private boolean flag = false;
+    private int routeType;
 
     private static final int bus = 0;
     private static final int car = 1;
@@ -29,41 +31,59 @@ public class RouteDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_detail);
         intView();
+        addFragment(listFragment);
+        switchRouteType(routeType);
     }
 
     private void intView() {
+        Intent intent = getIntent();
+        routeType = intent.getIntExtra(RouteActivity.ROUTE_TYPE, 0);
+        Path path = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
+        mapFragment = MapFragment.newInstance();
+        listFragment = RouteListFragment.newInstance(path, routeType);
+    }
+
+    private void addFragment(Fragment fragment) {
+        transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.detail_container, fragment);
+        transaction.isAddToBackStackAllowed();
+        transaction.commit();
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.detail_container, fragment);
+        transaction.isAddToBackStackAllowed();
+        transaction.commit();
+    }
+
+    public void switchRouteType(int type) {
 
         TextView title = (TextView) findViewById(R.id.detail_title);
 
-        Intent intent = getIntent();
-        int type = intent.getIntExtra(RouteActivity.ROUTE_TYPE, 0);
         switch (type) {
             case bus: {
                 //设置标题
                 title.setText(getString(R.string.detail_title_bus));
-                busPath = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
-                ListView detailList = (ListView) findViewById(R.id.bus_detial);
-                BusDetailListAdapter adapter = new BusDetailListAdapter(this, busPath.getSteps());
-                detailList.setAdapter(adapter);
                 break;
             }
             case car: {
                 title.setText(getString(R.string.detail_title_car));
-                drivePath = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
-                ListView detailList = (ListView) findViewById(R.id.bus_detial);
-                CarDetailListAdapter adapter = new CarDetailListAdapter(this, drivePath.getSteps());
-                detailList.setAdapter(adapter);
                 break;
             }
             case walk: {
                 title.setText(getString(R.string.detail_title_walk));
-                walkPath = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
-                ListView detalList = (ListView) findViewById(R.id.bus_detial);
-                WalkDetailListAdapter adapter = new WalkDetailListAdapter(this,walkPath.getSteps());
-                detalList.setAdapter(adapter);
                 break;
             }
         }
+    }
 
+    public void switchMap(View view) {
+        flag = !flag;
+        if(flag) {
+            replaceFragment(mapFragment);
+            return;
+        }
+        replaceFragment(listFragment);
     }
 }
