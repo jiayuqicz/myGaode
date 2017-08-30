@@ -2,6 +2,7 @@ package com.jiayuqicz.mygaode.weather;
 
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.amap.api.services.weather.LocalWeatherLiveResult;
 import com.amap.api.services.weather.WeatherSearch;
 import com.amap.api.services.weather.WeatherSearchQuery;
 import com.jiayuqicz.mygaode.R;
+import com.jiayuqicz.mygaode.main.MainActivity;
 
 import java.util.List;
 
@@ -33,6 +35,8 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
 
     private WeatherSearchQuery query = null;
     private WeatherSearch weatherSearch = null;
+
+    private SharedPreferences share = MainActivity.share;
 
     public static WeatherFragment newIntance() {
         return new WeatherFragment();
@@ -116,11 +120,25 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
 
                 for (int i = 0; i < forcastList.size(); i++) {
 
-
-
-
                     //获取第i天的天气
                     localDayWeatherForecast= forcastList.get(i);
+
+                    //根据设置动态调整当天的天气是否显示
+                    if(!share.getBoolean("show_today", true) && i==0) {
+
+                        getView().findViewWithTag("day0_forcast_empty")
+                                .setVisibility(View.GONE);
+
+                        getView().findViewWithTag("Date_value_forcast_day" + String.valueOf(i))
+                                .setVisibility(View.GONE);
+
+                        getView().findViewWithTag("weather_value_forcast_day" + String.valueOf(i))
+                                .setVisibility(View.GONE);
+
+                        getView().findViewWithTag("temperature_value_forcast_day"
+                                + String.valueOf(i)).setVisibility(View.GONE);
+                        continue;
+                    }
 
                     //日期
                     textView = (TextView) getView().findViewWithTag("Date_value_forcast_day" +
@@ -138,6 +156,8 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
                             + String.valueOf(i));
                     textView.setText(localDayWeatherForecast.getDayTemp() + "/"
                             + localDayWeatherForecast.getNightTemp());
+
+
                 }
             }
         }

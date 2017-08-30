@@ -306,6 +306,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:tag="day0_forcast_empty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnSpan="3"

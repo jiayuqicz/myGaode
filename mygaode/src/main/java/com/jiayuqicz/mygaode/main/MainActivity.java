@@ -1,6 +1,8 @@
 package com.jiayuqicz.mygaode.main;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     //记录当前的页面，解决重复点击相同的标签，导致页面的重新加载的bug
     private String currentFragment = null;
     private MyViewPager pager = null;
+    public static SharedPreferences share = null;
 
     private String MAP = "mapFragment";
     private String SEARCH = "searchFragment";
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //读取设置
+        share = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_main);
         if(savedInstanceState != null) {
             return;
@@ -122,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
                 pager.setScroll(true);
                 currentFragment = SETTINGS;
                 break;
-
         }
     }
 
@@ -142,4 +146,9 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         super.onRestoreInstanceState(savedInstanceState);
         pager.onRestoreInstanceState(savedInstanceState);
     }
+
+    public static SharedPreferences getPreference() {
+        return share;
+    }
+
 }
