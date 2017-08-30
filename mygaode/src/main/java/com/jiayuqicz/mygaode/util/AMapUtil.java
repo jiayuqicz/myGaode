@@ -21,6 +21,13 @@ import java.util.List;
 public class AMapUtil {
 
     /**
+     * 把LatLng对象转化为LatLonPoint对象
+     */
+    public static LatLonPoint convertToLatLonPoint(LatLng latlon) {
+        return new LatLonPoint(latlon.latitude, latlon.longitude);
+    }
+
+    /**
      * 把LatLonPoint对象转化为LatLon对象
      */
     public static LatLng convertToLatLng(LatLonPoint latLonPoint) {

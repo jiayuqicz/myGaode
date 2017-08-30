@@ -51,9 +51,9 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     public static String ROUTE_TYPE = "route_type";
     public static String ROUTE_RESULT = "route_result";
 
-    private static final int bus = 0;
-    private static final int car = 1;
-    private static final int walk = 2;
+    public static final int bus = 0;
+    public static final int car = 1;
+    public static final int walk = 2;
 
     private int routeType;
 

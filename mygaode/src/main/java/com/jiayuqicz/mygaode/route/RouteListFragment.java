@@ -18,6 +18,10 @@ import com.jiayuqicz.mygaode.route.bus.BusDetailListAdapter;
 import com.jiayuqicz.mygaode.route.car.CarDetailListAdapter;
 import com.jiayuqicz.mygaode.route.walk.WalkDetailListAdapter;
 
+import static com.jiayuqicz.mygaode.route.RouteActivity.bus;
+import static com.jiayuqicz.mygaode.route.RouteActivity.car;
+import static com.jiayuqicz.mygaode.route.RouteActivity.walk;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -26,10 +30,6 @@ public class RouteListFragment extends Fragment {
     private Path path = null;
     private ListView detailList = null;
     private int type;
-
-    private static final int bus = 0;
-    private static final int car = 1;
-    private static final int walk = 2;
 
     private static String BUNDLE_PATH = "path";
     private static String BUNDLE_INT = "int";

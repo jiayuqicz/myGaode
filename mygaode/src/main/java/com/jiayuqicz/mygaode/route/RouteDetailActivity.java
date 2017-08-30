@@ -44,7 +44,7 @@ public class RouteDetailActivity extends AppCompatActivity {
         routeType = intent.getIntExtra(RouteActivity.ROUTE_TYPE, 0);
         path = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
         result = intent.getParcelableExtra(RouteActivity.ROUTE_RESULT);
-        mapFragment = RouteMapFragment.newInstance(path, result);
+        mapFragment = RouteMapFragment.newInstance(path, result, routeType);
         listFragment = RouteListFragment.newInstance(path, routeType);
     }
 

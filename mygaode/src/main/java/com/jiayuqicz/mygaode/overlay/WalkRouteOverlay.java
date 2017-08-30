@@ -41,7 +41,8 @@ public class WalkRouteOverlay extends RouteOverlay {
 		startPoint = AMapServicesUtil.convertToLatLng(start);
 		endPoint = AMapServicesUtil.convertToLatLng(end);
 	}
-	/**
+
+    /**
 	 * 添加步行路线到地图中。
 	 * @since V2.1.0
 	 */

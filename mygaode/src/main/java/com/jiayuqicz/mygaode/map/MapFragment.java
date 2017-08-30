@@ -33,6 +33,7 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
     @Override
     protected void initMap(Bundle savedInstanceState) {
         super.initMap(savedInstanceState);
+
         //设置marker点击监听器
         aMap.setOnMarkerClickListener(this);
         //开启定位的监听器
@@ -76,6 +77,7 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
 
     @Override
     public void onMyLocationChange(Location location) {
+
         if(start == null)
             start = new LatLonPoint(location.getLatitude(), location.getLongitude());
         else {
