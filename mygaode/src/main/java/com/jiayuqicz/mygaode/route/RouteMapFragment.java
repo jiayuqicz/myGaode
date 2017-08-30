@@ -11,13 +11,13 @@ import android.view.ViewGroup;
 import com.amap.api.services.route.BusPath;
 import com.amap.api.services.route.Path;
 import com.amap.api.services.route.RouteResult;
-import com.jiayuqicz.mygaode.map.MapFragment;
+import com.jiayuqicz.mygaode.map.BaseFragment;
 import com.jiayuqicz.mygaode.overlay.BusRouteOverlay;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RouteMapFragment extends MapFragment {
+public class RouteMapFragment extends BaseFragment {
 
     private static String RESULT = "result";
     private static String PATH = "path";
@@ -36,8 +36,8 @@ public class RouteMapFragment extends MapFragment {
     }
 
     @Override
-    protected void initMap() {
-        super.initMap();
+    protected void initMap(Bundle savedInstanceState) {
+        super.initMap(savedInstanceState);
         BusRouteOverlay overlay = new BusRouteOverlay(getActivity(),aMap, (BusPath) path,result.getStartPos(),
                 result.getTargetPos());
         overlay.removeFromMap();
@@ -49,10 +49,8 @@ public class RouteMapFragment extends MapFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-
         result = getArguments().getParcelable(RESULT);
         path = getArguments().getParcelable(PATH);
-
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
