@@ -29,8 +29,8 @@
     <string name="settings_show_today">包含今天</string>
 
     <string name="gesture">手势</string>
-    <string name="map_switch_gesture">开启地图界面的切换手势</string>
-    <string name="map_gensture">开启地图界面的手势操作</string>
+    <string name="map_switch_gesture">启用地图界面的滑动翻页</string>
+    <string name="map_gensture">启用地图手势操作</string>
 
 
     <!--搜索-->

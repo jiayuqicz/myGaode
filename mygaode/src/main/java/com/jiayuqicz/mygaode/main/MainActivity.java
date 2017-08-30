@@ -27,12 +27,15 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     private String WEATHER = "weatherFragment";
     private String SETTINGS = "settingFragment";
 
+    private boolean enableScroll;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //读取设置
         share = PreferenceManager.getDefaultSharedPreferences(this);
+        enableScroll = share.getBoolean("map_switch_gensture", true);
         setContentView(R.layout.activity_main);
         if(savedInstanceState != null) {
             return;
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
 
         if(findViewById(R.id.viewPager)!=null) {
             pager = (MyViewPager) findViewById(R.id.viewPager);
+            //设置立即生效，解决首次启动滑动不受控制的bug
+            pager.setScroll(enableScroll);
             pager.setAdapter(new MyPagerAdapter(getFragmentManager()));
             pager.addOnPageChangeListener(this);
         }
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
 
     public void selectMapFragment(View view) {
         //禁用手势滑动翻页
-        pager.setScroll(false);
+        pager.setScroll(enableScroll);
 
         if(currentFragment == MAP)
             return;
@@ -112,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         switch (position) {
             case 0:
                 //当处于地图页面时，禁用滑动
-                pager.setScroll(false);
+                pager.setScroll(enableScroll);
                 currentFragment = MAP;
                 break;
             case 1:

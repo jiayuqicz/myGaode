@@ -75,8 +75,13 @@ public abstract class BaseFragment extends Fragment {
         uiSettings.setMyLocationButtonEnabled(true);
         //开启缩放按钮
         uiSettings.setZoomControlsEnabled(true);
+
         //开启手势地图操作
-        uiSettings.setAllGesturesEnabled(true);
+        if (share.getBoolean("map_gensture", true))
+            uiSettings.setAllGesturesEnabled(true);
+        else
+            uiSettings.setAllGesturesEnabled(false);
+
     }
 
     protected TextureMapView getMapView() {
