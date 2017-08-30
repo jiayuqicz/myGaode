@@ -13,6 +13,9 @@ import com.amap.api.services.route.WalkStep;
 
 import java.util.List;
 
+import static com.jiayuqicz.mygaode.util.AMapUtil.convertArrList;
+import static com.jiayuqicz.mygaode.util.AMapUtil.convertToLatLng;
+
 /**
  * 步行路线图层类。在高德地图API里，如果要显示步行路线规划，可以用此类来创建步行路线图层。如不满足需求，也可以自己创建自定义的步行路线图层。
  * @since V2.1.0
@@ -38,8 +41,8 @@ public class WalkRouteOverlay extends RouteOverlay {
 		super(context);
 		this.mAMap = amap;
 		this.walkPath = path;
-		startPoint = AMapServicesUtil.convertToLatLng(start);
-		endPoint = AMapServicesUtil.convertToLatLng(end);
+		startPoint = convertToLatLng(start);
+		endPoint = convertToLatLng(end);
 	}
 
     /**
@@ -54,7 +57,7 @@ public class WalkRouteOverlay extends RouteOverlay {
             mPolylineOptions.add(startPoint);
             for (int i = 0; i < walkPaths.size(); i++) {
                 WalkStep walkStep = walkPaths.get(i);
-                LatLng latLng = AMapServicesUtil.convertToLatLng(walkStep
+                LatLng latLng = convertToLatLng(walkStep
                         .getPolyline().get(0));
                 
 				addWalkStationMarkers(walkStep, latLng);
@@ -100,7 +103,7 @@ public class WalkRouteOverlay extends RouteOverlay {
 
 
     private void addWalkPolyLine(LatLonPoint pointFrom, LatLonPoint pointTo) {
-        addWalkPolyLine(AMapServicesUtil.convertToLatLng(pointFrom), AMapServicesUtil.convertToLatLng(pointTo));
+        addWalkPolyLine(convertToLatLng(pointFrom), convertToLatLng(pointTo));
     }
 
     private void addWalkPolyLine(LatLng latLngFrom, LatLng latLngTo) {
@@ -111,7 +114,7 @@ public class WalkRouteOverlay extends RouteOverlay {
      * @param walkStep
      */
     private void addWalkPolyLines(WalkStep walkStep) {
-        mPolylineOptions.addAll(AMapServicesUtil.convertArrList(walkStep.getPolyline()));
+        mPolylineOptions.addAll(convertArrList(walkStep.getPolyline()));
     }
 
     /**
