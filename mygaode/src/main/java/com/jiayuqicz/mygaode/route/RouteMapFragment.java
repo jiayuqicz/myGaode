@@ -56,6 +56,7 @@ public class RouteMapFragment extends BaseFragment {
                         result.getStartPos(), result.getTargetPos());
                 overlay.removeFromMap();
                 overlay.addToMap();
+                overlay.zoomToSpan();
                 break;
             }
             case car: {
@@ -63,6 +64,7 @@ public class RouteMapFragment extends BaseFragment {
                         (DrivePath) path, result.getStartPos(), result.getTargetPos(), null);
                 overlay.removeFromMap();
                 overlay.addToMap();
+                overlay.zoomToSpan();
                 break;
             }
             case walk: {
@@ -70,6 +72,7 @@ public class RouteMapFragment extends BaseFragment {
                         result.getStartPos(), result.getTargetPos());
                 overlay.removeFromMap();
                 overlay.addToMap();
+                overlay.zoomToSpan();
                 break;
             }
         }

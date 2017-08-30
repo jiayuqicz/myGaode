@@ -22,6 +22,7 @@ public class RouteDetailActivity extends AppCompatActivity {
     private Path path;
 
     private boolean flag = false;
+    private boolean createMap = true;
     private int routeType;
 
     private static final int bus = 0;
@@ -33,8 +34,6 @@ public class RouteDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_detail);
         intView();
-        addFragment(mapFragment);
-        hideFragment(mapFragment);
         addFragment(listFragment);
         switchRouteType(routeType);
     }
@@ -91,6 +90,11 @@ public class RouteDetailActivity extends AppCompatActivity {
     }
 
     public void switchMap(View view) {
+
+        if (createMap) {
+            addFragment(mapFragment);
+            createMap = !createMap;
+        }
         flag = !flag;
         if (flag) {
             hideFragment(listFragment);
