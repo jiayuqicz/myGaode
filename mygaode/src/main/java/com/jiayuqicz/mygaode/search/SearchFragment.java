@@ -76,7 +76,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
         String input = s.toString().trim();
         InputtipsQuery query = new InputtipsQuery(input, city);
-        query.setCityLimit(true);
+        query.setCityLimit(false);
         Inputtips inputtips = new Inputtips(getActivity(), query);
         inputtips.setInputtipsListener(this);
         inputtips.requestInputtipsAsyn();
@@ -97,7 +97,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
             for(Tip tip : list) {
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("name", tip.getName());
-                hashMap.put("address", tip.getAddress());
+                hashMap.put("address", tip.getDistrict());
                 hashMap.put("point", tip.getPoint());
                 tips.add(hashMap);
             }
