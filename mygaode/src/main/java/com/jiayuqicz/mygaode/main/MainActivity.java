@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
     //记录当前的页面，解决重复点击相同的标签，导致页面的重新加载的bug
     private String currentFragment = null;
     private MyViewPager pager = null;
-    public static SharedPreferences share = null;
+    public  SharedPreferences share = null;
 
     private String MAP = "mapFragment";
     private String SEARCH = "searchFragment";
@@ -37,9 +37,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         share = PreferenceManager.getDefaultSharedPreferences(this);
         enableScroll = share.getBoolean("map_switch_gensture", true);
         setContentView(R.layout.activity_main);
-        if(savedInstanceState != null) {
-            return;
-        }
+
         //初始化界面
         initView();
     }
@@ -152,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         pager.onRestoreInstanceState(savedInstanceState);
     }
 
-    public static SharedPreferences getPreference() {
+    public SharedPreferences getPreference() {
         return share;
     }
 

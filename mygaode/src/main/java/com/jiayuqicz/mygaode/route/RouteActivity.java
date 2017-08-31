@@ -137,6 +137,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                 //为ListView配置数据源
                 BusResultListAdapter adapter = new BusResultListAdapter(this , result);
                 routeList.setAdapter(adapter);
+                routeType = bus;
             }
         }
     }
@@ -147,10 +148,9 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
             if (result != null && result.getPaths() != null) {
                 if (result.getPaths().size() > 0) {
                     driveRouteResult = result;
-
                     CarResultListAdapter adapter = new CarResultListAdapter(this, result);
                     routeList.setAdapter(adapter);
-
+                    routeType = car;
                 }
             }
         }
@@ -165,6 +165,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                     walkRouteResult = result;
                     WalkResultListAdapter adapter = new WalkResultListAdapter(this, result);
                     routeList.setAdapter(adapter);
+                    routeType = walk;
                 }
             }
         }
@@ -211,17 +212,14 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     }
 
     public void searchBus(View view) {
-        routeType = bus;
         searchRouteResult(bus, RouteSearch.BUS_DEFAULT);
     }
 
     public void searchCar(View view) {
-        routeType = car;
         searchRouteResult(car, RouteSearch.BUS_DEFAULT);
     }
 
     public void searchWalk(View view) {
-        routeType = walk;
         searchRouteResult(walk, RouteSearch.BUS_DEFAULT);
     }
 }

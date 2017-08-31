@@ -36,7 +36,7 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     private WeatherSearchQuery query = null;
     private WeatherSearch weatherSearch = null;
 
-    private SharedPreferences share = MainActivity.share;
+    private SharedPreferences share = null;
 
     public static WeatherFragment newIntance() {
         return new WeatherFragment();
@@ -46,6 +46,7 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        share = ((MainActivity)getActivity()).getPreference();
         return inflater.inflate(R.layout.main_fragment_weather, container, false);
     }
 

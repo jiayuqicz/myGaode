@@ -4,6 +4,7 @@ package com.jiayuqicz.mygaode.map;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,6 @@ import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.jiayuqicz.mygaode.R;
-import com.jiayuqicz.mygaode.main.MainActivity;
 import com.jiayuqicz.mygaode.util.OfflineMapUtil;
 
 /**
@@ -24,7 +24,7 @@ import com.jiayuqicz.mygaode.util.OfflineMapUtil;
 public abstract class BaseFragment extends Fragment {
 
     protected TextureMapView mapView = null;
-    protected SharedPreferences share = MainActivity.share;
+    protected SharedPreferences share = null;
     protected AMap aMap = null;
     protected final String SHOW_CAMPASS = "show_compass";
 
@@ -33,6 +33,7 @@ public abstract class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //设置离线地图的目录
         MapsInitializer.sdcardDir = OfflineMapUtil.getSdCacheDir();
+        share = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
     @Override
