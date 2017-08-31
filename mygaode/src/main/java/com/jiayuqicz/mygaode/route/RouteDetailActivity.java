@@ -23,7 +23,6 @@ public class RouteDetailActivity extends AppCompatActivity {
     private Path path;
 
     private boolean flag = false;
-    private boolean createMap = true;
     private int routeType;
 
     private final int bus = 0;
@@ -37,6 +36,7 @@ public class RouteDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_detail);
         intView();
+        addFragmentInvisible(mapFragment);
         addFragment(listFragment);
         switchRouteType(routeType);
     }
@@ -62,6 +62,14 @@ public class RouteDetailActivity extends AppCompatActivity {
     private void hideFragment(Fragment fragment) {
 
         transaction = getFragmentManager().beginTransaction();
+        transaction.hide(fragment);
+        transaction.commit();
+    }
+
+    private void addFragmentInvisible(Fragment fragment) {
+
+        transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.detail_container, fragment);
         transaction.hide(fragment);
         transaction.commit();
     }
@@ -96,10 +104,6 @@ public class RouteDetailActivity extends AppCompatActivity {
 
     public void switchMap(View view) {
 
-        if (createMap) {
-            addFragment(mapFragment);
-            createMap = !createMap;
-        }
         flag = !flag;
         if (flag) {
             hideFragment(listFragment);
