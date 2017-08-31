@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.amap.api.services.core.AMapException;
@@ -55,6 +56,8 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     public static final int car = 1;
     public static final int walk = 2;
 
+    private ProgressBar bar;
+
     private int routeType;
 
     @Override
@@ -78,6 +81,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
         start = getIntent().getParcelableExtra(MapFragment.INTENT_DATA_ID_START);
         end = getIntent().getParcelableExtra(MapFragment.INTENT_DATA_ID_END);
         city = getIntent().getStringExtra(MapFragment.INTENT_CITY);
+        bar = (ProgressBar) findViewById(R.id.progressBar);
 
         routeList = (ListView) findViewById(R.id.route_list);
         routeList.setOnItemClickListener(this);
@@ -101,6 +105,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
      * 开始搜索路径规划方案
      */
     public void searchRouteResult(int routeType, int schedule) {
+        bar.setVisibility(View.VISIBLE);
         if (start == null) {
             ToastUtil.show(this, "起点未设置");
             return;
@@ -139,6 +144,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                 BusResultListAdapter adapter = new BusResultListAdapter(this , result);
                 routeList.setAdapter(adapter);
                 routeType = bus;
+                bar.setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -152,6 +158,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                     CarResultListAdapter adapter = new CarResultListAdapter(this, result);
                     routeList.setAdapter(adapter);
                     routeType = car;
+                    bar.setVisibility(View.INVISIBLE);
                 }
             }
         }
@@ -167,6 +174,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
                     WalkResultListAdapter adapter = new WalkResultListAdapter(this, result);
                     routeList.setAdapter(adapter);
                     routeType = walk;
+                    bar.setVisibility(View.INVISIBLE);
                 }
             }
         }
