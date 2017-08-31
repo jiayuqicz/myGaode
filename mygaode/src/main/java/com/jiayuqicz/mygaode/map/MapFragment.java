@@ -11,19 +11,27 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.jiayuqicz.mygaode.R;
+import com.jiayuqicz.mygaode.main.MainActivity;
 import com.jiayuqicz.mygaode.route.RouteActivity;
 
 
 public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListener,
-        AMap.OnMyLocationChangeListener{
+        AMap.OnMyLocationChangeListener, GeocodeSearch.OnGeocodeSearchListener {
 
     public final static String INTENT_DATA_ID_START = "com.jiayuqicz.mygaode.map.start";
     public final static String INTENT_DATA_ID_END = "com.jiayuqicz.mygaode.map.end";
 
     private LatLonPoint start = null;
     private LatLonPoint end = null;
+
+    private GeocodeSearch geocodeSearch = null;
 
     //便于维护，传递参数数据
     public static MapFragment newInstance() {
@@ -38,7 +46,15 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
         aMap.setOnMarkerClickListener(this);
         //开启定位的监听器
         aMap.setOnMyLocationChangeListener(this);
+        //初始化地理信息，得到当前的地址
+        initGeo();
     }
+
+    private void initGeo() {
+        geocodeSearch = new GeocodeSearch(getActivity());
+        geocodeSearch.setOnGeocodeSearchListener(this);
+    }
+
 
     public void addMaker(LatLonPoint makerPoint) {
         double lat = makerPoint.getLatitude();
@@ -84,5 +100,26 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
             start.setLatitude(location.getLatitude());
             start.setLongitude(location.getLongitude());
         }
+
+        RegeocodeQuery query = new RegeocodeQuery(start, 200, GeocodeSearch.AMAP);
+        geocodeSearch.getFromLocationAsyn(query);
+
+    }
+
+    @Override
+    public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
+        if (rCode == AMapException.CODE_AMAP_SUCCESS) {
+            if (result != null && result.getRegeocodeAddress() != null && result
+                    .getRegeocodeAddress().getFormatAddress() != null) {
+                String city = result.getRegeocodeAddress().getCity();
+                ((MainActivity)getActivity()).setCity(city);
+            }
+        }
+
+    }
+
+    @Override
+    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
     }
 }

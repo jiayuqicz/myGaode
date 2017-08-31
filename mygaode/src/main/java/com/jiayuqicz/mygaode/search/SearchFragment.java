@@ -32,6 +32,7 @@ import java.util.List;
 public class SearchFragment extends Fragment implements TextWatcher, Inputtips.InputtipsListener,
         AdapterView.OnItemClickListener {
 
+
     private String city = "北京";
 
     private ListView inputList;
@@ -119,4 +120,8 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
     }
 
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

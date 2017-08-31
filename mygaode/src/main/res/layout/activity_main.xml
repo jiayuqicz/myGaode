@@ -8,12 +8,11 @@
     <include layout="@layout/main_title"
         android:id="@+id/title" />
 
-        <com.jiayuqicz.mygaode.main.MyViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent" android:layout_height="match_parent"
-            android:id="@+id/viewPager"
-            android:layout_below="@id/title">
-
-        </com.jiayuqicz.mygaode.main.MyViewPager>
+    <com.jiayuqicz.mygaode.main.MyViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:id="@+id/viewPager"
+        android:layout_below="@id/title">
+    </com.jiayuqicz.mygaode.main.MyViewPager>
 
 </RelativeLayout>
 

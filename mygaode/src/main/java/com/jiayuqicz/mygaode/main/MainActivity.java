@@ -154,4 +154,11 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         return share;
     }
 
+    public void setCity(String city) {
+        MyPagerAdapter adapter = (MyPagerAdapter) pager.getAdapter();
+        SearchFragment fragment = (SearchFragment) adapter.getFragment(1);
+        if (fragment != null) {
+            fragment.setCity(city);
+        }
+    }
 }
