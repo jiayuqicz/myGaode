@@ -43,7 +43,8 @@
         </activity>
         <activity android:name=".route.RouteActivity" />
         <activity android:name=".route.RouteDetailActivity" />
-        <activity android:name=".offlinemap.OfflineMapActivity"/>
+        <activity android:name=".offlinemap.OfflineMapActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
 </manifest>
