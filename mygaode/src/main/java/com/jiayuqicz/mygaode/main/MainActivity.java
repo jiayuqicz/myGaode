@@ -156,9 +156,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
 
     public void setCity(String city) {
         MyPagerAdapter adapter = (MyPagerAdapter) pager.getAdapter();
-        SearchFragment fragment = (SearchFragment) adapter.getFragment(1);
-        if (fragment != null) {
-            fragment.setCity(city);
-        }
+        SearchFragment searchFragment = (SearchFragment) adapter.getFragment(1);
+        searchFragment.setCity(city);
     }
 }

@@ -47,9 +47,9 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
     private String city = "北京";
 
-    public static String DETAIL_INTENT = "detail_intent";
-    public static String ROUTE_TYPE = "route_type";
-    public static String ROUTE_RESULT = "route_result";
+    public final static String DETAIL_INTENT = "detail_intent";
+    public final static String ROUTE_TYPE = "route_type";
+    public final static String ROUTE_RESULT = "route_result";
 
     public static final int bus = 0;
     public static final int car = 1;
@@ -77,6 +77,7 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
 
         start = getIntent().getParcelableExtra(MapFragment.INTENT_DATA_ID_START);
         end = getIntent().getParcelableExtra(MapFragment.INTENT_DATA_ID_END);
+        city = getIntent().getStringExtra(MapFragment.INTENT_CITY);
 
         routeList = (ListView) findViewById(R.id.route_list);
         routeList.setOnItemClickListener(this);

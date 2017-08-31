@@ -18,6 +18,7 @@
         android:textColor="@android:color/white" />
 
     <Button
+        android:id="@+id/switch_button"
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
         android:layout_gravity="end"
         android:layout_width="wrap_content"

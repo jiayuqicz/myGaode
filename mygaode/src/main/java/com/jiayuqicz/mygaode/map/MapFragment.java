@@ -27,9 +27,11 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
 
     public final static String INTENT_DATA_ID_START = "com.jiayuqicz.mygaode.map.start";
     public final static String INTENT_DATA_ID_END = "com.jiayuqicz.mygaode.map.end";
+    public final static String INTENT_CITY = "com.jiayuqicz.mygaode.map.city";
 
     private LatLonPoint start = null;
     private LatLonPoint end = null;
+    private String city = "北京";
 
     private GeocodeSearch geocodeSearch = null;
 
@@ -87,23 +89,21 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
         Intent intent = new Intent(getActivity(), RouteActivity.class);
         intent.putExtra(INTENT_DATA_ID_START, this.start);
         intent.putExtra(INTENT_DATA_ID_END,this.end);
+        intent.putExtra(INTENT_CITY, this.city);
         startActivity(intent);
         return true;
     }
 
     @Override
     public void onMyLocationChange(Location location) {
-
         if(start == null)
             start = new LatLonPoint(location.getLatitude(), location.getLongitude());
         else {
             start.setLatitude(location.getLatitude());
             start.setLongitude(location.getLongitude());
         }
-
         RegeocodeQuery query = new RegeocodeQuery(start, 200, GeocodeSearch.AMAP);
         geocodeSearch.getFromLocationAsyn(query);
-
     }
 
     @Override
@@ -111,7 +111,7 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
         if (rCode == AMapException.CODE_AMAP_SUCCESS) {
             if (result != null && result.getRegeocodeAddress() != null && result
                     .getRegeocodeAddress().getFormatAddress() != null) {
-                String city = result.getRegeocodeAddress().getCity();
+                city = result.getRegeocodeAddress().getCity();
                 ((MainActivity)getActivity()).setCity(city);
             }
         }

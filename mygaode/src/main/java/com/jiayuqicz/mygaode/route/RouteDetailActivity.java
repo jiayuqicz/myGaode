@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.amap.api.services.route.Path;
@@ -25,9 +26,11 @@ public class RouteDetailActivity extends AppCompatActivity {
     private boolean createMap = true;
     private int routeType;
 
-    private static final int bus = 0;
-    private static final int car = 1;
-    private static final int walk = 2;
+    private final int bus = 0;
+    private final int car = 1;
+    private final int walk = 2;
+
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,10 @@ public class RouteDetailActivity extends AppCompatActivity {
         routeType = intent.getIntExtra(RouteActivity.ROUTE_TYPE, 0);
         path = intent.getParcelableExtra(RouteActivity.DETAIL_INTENT);
         result = intent.getParcelableExtra(RouteActivity.ROUTE_RESULT);
+
         mapFragment = RouteMapFragment.newInstance(path, result, routeType);
         listFragment = RouteListFragment.newInstance(path, routeType);
+        button = (Button) findViewById(R.id.switch_button);
     }
 
     private void showFragment(Fragment fragment) {
@@ -99,10 +104,12 @@ public class RouteDetailActivity extends AppCompatActivity {
         if (flag) {
             hideFragment(listFragment);
             showFragment(mapFragment);
+            button.setText(R.string.detail_button);
         }
         else {
             hideFragment(mapFragment);
             showFragment(listFragment);
+            button.setText(R.string.map_button);
         }
 
     }
