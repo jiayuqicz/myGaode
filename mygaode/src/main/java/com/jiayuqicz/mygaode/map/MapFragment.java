@@ -86,6 +86,7 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+
         Intent intent = new Intent(getActivity(), RouteActivity.class);
         intent.putExtra(INTENT_DATA_ID_START, this.start);
         intent.putExtra(INTENT_DATA_ID_END,this.end);

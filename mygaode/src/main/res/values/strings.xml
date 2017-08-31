@@ -5,7 +5,7 @@
     <string name="fragment3">搜索</string>
     <string name="fragment4">设置</string>
 
-    <string name="Null"></string>
+    <string name="Null"/>
 
     <!--天气-->
     <string name="Weather_title">天气情况</string>
@@ -31,6 +31,9 @@
     <string name="gesture">手势</string>
     <string name="map_switch_gesture">启用地图界面的滑动翻页</string>
     <string name="map_gensture">启用地图手势操作</string>
+
+    <string name="offline_map">离线地图</string>
+    <string name="offilne_map_manager">离线地图管理</string>
 
 
     <!--搜索-->
@@ -60,8 +63,9 @@
     <string name="map_button">地图</string>
     <string name="detail_button">详情</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--离线地图界面-->
+    <string name="all_offline">所有城市</string>
+    <string name="download_offline">下载管理</string>
 
 
 </resources>

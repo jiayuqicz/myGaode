@@ -33,6 +33,16 @@
             android:title="@string/map_switch_gesture"/>
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/offline_map">
+        <Preference
+            android:title="@string/offilne_map_manager">
+            <intent
+                android:targetPackage="com.jiayuqicz.mygaode"
+                android:targetClass="com.jiayuqicz.mygaode.offlinemap.OfflineMapActivity"/>
+        </Preference>
+    </PreferenceCategory>
+
 
 
 </PreferenceScreen>
