@@ -21,6 +21,7 @@
 
     <!--设置-->
     <string name="settings">设置</string>
+    <string name="toast_change">该设置将在应用重启后生效</string>
 
     <string name="settings_map_group">地图</string>
     <string name="settings_show_compass">显示指南针</string>
