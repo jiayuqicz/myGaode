@@ -99,10 +99,14 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
 
     @Override
     public void Locate(LatLonPoint point) {
+        //获得Fragment
         MapFragment mapFragment = (MapFragment) ((MyPagerAdapter)pager.getAdapter()).getFragment(0);
         SearchFragment searchFragment = (SearchFragment) ((MyPagerAdapter)pager.getAdapter())
                 .getFragment(1);
+        //设置AdressHashmap
         MySimpleAdapter adapter = searchFragment.getAdapter();
+        mapFragment.setAddressHashMap(adapter.getAdressMap());
+
         if(point != null) {
             mapFragment.addMaker(adapter.getLatLonPoints());
             mapFragment.locate(point);

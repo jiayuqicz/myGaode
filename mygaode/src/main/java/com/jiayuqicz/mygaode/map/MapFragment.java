@@ -21,7 +21,8 @@ import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.main.MainActivity;
 import com.jiayuqicz.mygaode.route.RouteActivity;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Set;
 
 
 public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListener,
@@ -31,6 +32,8 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
     public final static String INTENT_DATA_ID_START = "com.jiayuqicz.mygaode.map.start";
     public final static String INTENT_DATA_ID_END = "com.jiayuqicz.mygaode.map.end";
     public final static String INTENT_CITY = "com.jiayuqicz.mygaode.map.city";
+
+    private HashMap<LatLonPoint, String> addressHashMap = new HashMap<>();
 
     private LatLonPoint start = null;
     private LatLonPoint end = null;
@@ -63,7 +66,7 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
     }
 
 
-    public void addMaker(HashSet<LatLonPoint> latLonPoints) {
+    public void addMaker(Set<LatLonPoint> latLonPoints) {
         aMap.clear();
         for (LatLonPoint makerPoint : latLonPoints) {
             double lat = makerPoint.getLatitude();
@@ -72,7 +75,6 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
                     .title(getString(R.string.marker_title));
             aMap.addMarker(options);
         }
-
     }
 
     public void locate(LatLonPoint makerPoint) {
@@ -87,7 +89,8 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
         MarkerOptions options = new MarkerOptions()
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 .position(new LatLng(lat, lon))
-                .title(getString(R.string.marker_title));
+                .title(getString(R.string.marker_title))
+                .snippet(addressHashMap.get(makerPoint));
         aMap.addMarker(options).showInfoWindow();
         //缩放范围： 3- 19
         aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 15));
@@ -99,6 +102,8 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
         if (marker.getTitle() == null) return true;
         end.setLatitude(marker.getPosition().latitude);
         end.setLongitude(marker.getPosition().longitude);
+        marker.setSnippet(addressHashMap.get(new LatLonPoint(marker.getPosition().latitude,
+                marker.getPosition().longitude)));
         marker.showInfoWindow();
         return true;
     }
@@ -139,5 +144,9 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
         intent.putExtra(INTENT_DATA_ID_END, end);
         intent.putExtra(INTENT_CITY, city);
         startActivity(intent);
+    }
+
+    public void setAddressHashMap(HashMap<LatLonPoint, String> addressHashMap) {
+        this.addressHashMap = addressHashMap;
     }
 }
