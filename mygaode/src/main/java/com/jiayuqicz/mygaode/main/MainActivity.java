@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.amap.api.services.core.LatLonPoint;
 import com.jiayuqicz.mygaode.R;
 import com.jiayuqicz.mygaode.map.MapFragment;
+import com.jiayuqicz.mygaode.search.MySimpleAdapter;
 import com.jiayuqicz.mygaode.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements SearchFragment.MyItemClickedListener,
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
 
     //记录当前的页面，解决重复点击相同的标签，导致页面的重新加载的bug
     private String currentFragment = null;
+
     private MyViewPager pager = null;
     public  SharedPreferences share = null;
 
@@ -97,9 +99,14 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
 
     @Override
     public void Locate(LatLonPoint point) {
-        MapFragment mapFragment = (MapFragment) pager.getAdapter().instantiateItem(pager, 0);
-        if(point != null)
+        MapFragment mapFragment = (MapFragment) ((MyPagerAdapter)pager.getAdapter()).getFragment(0);
+        SearchFragment searchFragment = (SearchFragment) ((MyPagerAdapter)pager.getAdapter())
+                .getFragment(1);
+        MySimpleAdapter adapter = searchFragment.getAdapter();
+        if(point != null) {
+            mapFragment.addMaker(adapter.getLatLonPoints());
             mapFragment.locate(point);
+        }
         else
             Toast.makeText(this, R.string.invalid_address, Toast.LENGTH_SHORT).show();
     }
@@ -158,5 +165,9 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         MyPagerAdapter adapter = (MyPagerAdapter) pager.getAdapter();
         SearchFragment searchFragment = (SearchFragment) adapter.getFragment(1);
         searchFragment.setCity(city);
+    }
+
+    public MyViewPager getPager() {
+        return pager;
     }
 }

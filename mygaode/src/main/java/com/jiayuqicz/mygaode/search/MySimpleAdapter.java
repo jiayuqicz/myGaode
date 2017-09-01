@@ -7,6 +7,7 @@ import android.widget.SimpleAdapter;
 
 import com.amap.api.services.core.LatLonPoint;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -34,5 +35,14 @@ public class MySimpleAdapter extends SimpleAdapter {
         return view;
     }
 
+    public HashSet<LatLonPoint> getLatLonPoints() {
+        HashSet<LatLonPoint> set = new HashSet<>();
+        for(Map map : dataList) {
+            LatLonPoint point = (LatLonPoint) map.get("point");
+            if (point == null) continue;
+            set.add(point);
+        }
+        return set;
+    }
 
 }

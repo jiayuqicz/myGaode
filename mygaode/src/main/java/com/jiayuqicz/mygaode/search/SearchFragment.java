@@ -38,6 +38,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
     private ListView inputList;
     private AutoCompleteTextView searchBar;
 
+    private MySimpleAdapter adapter;
     private MyItemClickedListener mCallback = null;
 
     public interface MyItemClickedListener {
@@ -103,7 +104,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
                 tips.add(hashMap);
             }
 
-            MySimpleAdapter adapter = new MySimpleAdapter(getActivity(), tips, R.layout.main_search_tips,
+            adapter = new MySimpleAdapter(getActivity(), tips, R.layout.main_search_tips,
                     new String[] {"name", "address"}, new int[] {R.id.tip_name, R.id.tip_address});
             inputList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -120,8 +121,11 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
 
     }
 
-
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public MySimpleAdapter getAdapter() {
+        return adapter;
     }
 }
