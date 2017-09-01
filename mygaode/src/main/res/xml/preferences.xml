@@ -36,11 +36,16 @@
     <PreferenceCategory
         android:title="@string/offline_map">
         <Preference
-            android:title="@string/offilne_map_manager">
+            android:title="@string/offline_map_manager">
             <intent
                 android:targetPackage="com.jiayuqicz.mygaode"
                 android:targetClass="com.jiayuqicz.mygaode.offlinemap.OfflineMapActivity"/>
         </Preference>
+        <CheckBoxPreference
+            android:title="@string/offline_map_location"
+            android:key="offline_map_location"
+            android:defaultValue="false"
+            android:summary="@string/offilne_map_location_summary"/>
     </PreferenceCategory>
 
 

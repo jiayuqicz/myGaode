@@ -21,6 +21,7 @@
 
     <!--设置-->
     <string name="settings">设置</string>
+    <string name="toast_change">该设置将在应用重启后生效</string>
 
     <string name="settings_map_group">地图</string>
     <string name="settings_show_compass">显示指南针</string>
@@ -33,7 +34,10 @@
     <string name="map_gensture">启用地图手势操作</string>
 
     <string name="offline_map">离线地图</string>
-    <string name="offilne_map_manager">离线地图管理</string>
+    <string name="offline_map_manager">离线地图管理</string>
+    <string name="offline_map_location">存储在SD卡中</string>
+    <string name="offilne_map_location_summary">
+        如果勾选，那么卸载软件后的地图数据将被保留，下次安装后不必重新下载离线地图</string>
 
 
     <!--搜索-->
@@ -50,10 +54,20 @@
     <string name="route_bus">公交</string>
     <string name="route_car">驾车</string>
 
-    <string-array name="schedule">
-        <item>最省钱</item>
+    <string-array name="bus_mode">
         <item>时间短</item>
+        <item>最省钱</item>
         <item>少步行</item>
+    </string-array>
+
+    <string-array name="car_mode">
+        <item>时间短</item>
+        <item>最省钱</item>
+        <item>少拥堵</item>
+    </string-array>
+
+    <string-array name="walk_mode">
+        <item>默认</item>
     </string-array>
 
     <!--详情界面-->

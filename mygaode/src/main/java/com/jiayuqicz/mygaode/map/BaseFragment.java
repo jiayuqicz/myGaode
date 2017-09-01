@@ -32,8 +32,10 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //设置离线地图的目录
-        MapsInitializer.sdcardDir = OfflineMapUtil.getSdCacheDir();
         share = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (share.getBoolean("offline_map_location", false)) {
+            MapsInitializer.sdcardDir = OfflineMapUtil.getSdCacheDir();
+        }
     }
 
     @Override
@@ -58,7 +60,7 @@ public abstract class BaseFragment extends Fragment {
         //开启小蓝点定位
         MyLocationStyle style = new MyLocationStyle();
         style.showMyLocation(true);
-        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
+        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);
         style.interval(600000);
         aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);

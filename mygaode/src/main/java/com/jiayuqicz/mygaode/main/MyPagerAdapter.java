@@ -19,7 +19,7 @@ import com.jiayuqicz.mygaode.weather.WeatherFragment;
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
 
-    SparseArray<Fragment> list = new SparseArray<>();
+    private SparseArray<Fragment> list = new SparseArray<>();
 
     public MyPagerAdapter(FragmentManager fm) {
         super(fm);

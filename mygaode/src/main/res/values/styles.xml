@@ -1,14 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
          Customize your theme here.
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-
         <item name="android:windowBackground">@color/Settings_background</item>
         <item name="android:textColor">@color/White</item>
         <item name="colorAccent">@color/White</item>
+        <!--summary的颜色-->
+        <item name="android:textColorSecondary">@color/Hint</item>
     </style>
 
 </resources>

@@ -3,6 +3,7 @@ package com.jiayuqicz.mygaode.route;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -34,9 +35,17 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
         AdapterView.OnItemClickListener {
 
 
-    private Byte schedule_index;
-    private String[] schedule = null;
-    private TextView currentSchedule = null;
+    private Byte index;
+    //存储当前出行方式的mode值，用作参数
+    private int mode;
+    //存储公交模式
+    private String[] bus_mode = null;
+    //存储驾车模式
+    private String[] car_mode = null;
+    //存储步行模式
+    private String[] walk_mode = null;
+
+    private TextView modeTextView = null;
     private LatLonPoint start = null;
     private LatLonPoint end = null;
     private RouteSearch routeSearch = null;
@@ -65,47 +74,90 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
         initView();
-        searchRouteResult(routeType, RouteSearch.BUS_DEFAULT);
+        //开始搜索汽车出行方式
+        searchBus(null);
     }
 
     private void initView() {
-        //出行方式
-        routeType = bus;
-        //搜索的路径模式
-        schedule_index = 0;
 
-        schedule = getResources().getStringArray(R.array.schedule);
-        currentSchedule = (TextView) findViewById(R.id.schedule);
-        currentSchedule.setText(schedule[schedule_index]);
+        //初始化数组
+        bus_mode = getResources().getStringArray(R.array.bus_mode);
+        car_mode = getResources().getStringArray(R.array.car_mode);
+        walk_mode = getResources().getStringArray(R.array.walk_mode);
 
         start = getIntent().getParcelableExtra(MapFragment.INTENT_DATA_ID_START);
         end = getIntent().getParcelableExtra(MapFragment.INTENT_DATA_ID_END);
         city = getIntent().getStringExtra(MapFragment.INTENT_CITY);
-        bar = (ProgressBar) findViewById(R.id.progressBar);
 
+        bar = (ProgressBar) findViewById(R.id.progressBar);
+        modeTextView = (TextView) findViewById(R.id.schedule);
         routeList = (ListView) findViewById(R.id.route_list);
         routeList.setOnItemClickListener(this);
 
         routeSearch = new RouteSearch(this);
         routeSearch.setRouteSearchListener(this);
-
     }
 
     public void changeSchedule(View view) {
-
-        schedule_index++;
-        //循环控制不溢出
-        if(schedule_index == schedule.length) {
-            schedule_index = 0;
-        }
-        currentSchedule.setText(schedule[schedule_index]);
+        //index自加1
+        index++;
+        //改变模式
+        changeMode();
+        //开始搜索
+        searchRouteResult(routeType, mode);
     }
+
+    //改变模式
+    private void changeMode() {
+
+        //循环控制不溢出
+        if (index >= bus_mode.length) {
+            index = 0;
+        }
+
+        if (routeType == bus) {
+
+            switch (index) {
+                case 0:
+                    mode = RouteSearch.BUS_DEFAULT;
+                    break;
+                case 1:
+                    mode = RouteSearch.BUS_SAVE_MONEY;
+                    break;
+                case 2:
+                    mode = RouteSearch.BUS_LEASE_WALK;
+                    break;
+            }
+            modeTextView.setText(bus_mode[index]);
+        }
+        if (routeType == car) {
+
+            switch (index) {
+                case 0:
+                    mode = RouteSearch.DRIVING_MULTI_CHOICE_HIGHWAY_AVOID_CONGESTION;
+                    break;
+                case 1:
+                    mode = RouteSearch.DRIVING_MULTI_CHOICE_AVOID_CONGESTION_SAVE_MONEY;
+                    break;
+                case 2:
+                    mode = RouteSearch.DRIVING_MULTI_CHOICE_AVOID_CONGESTION;
+                    break;
+            }
+            modeTextView.setText(car_mode[index]);
+        }
+    }
+
 
     /**
      * 开始搜索路径规划方案
      */
     public void searchRouteResult(int routeType, int schedule) {
+
+        Log.e("test", String.valueOf(routeType) + " " + String.valueOf(schedule));
+
+        //显示进度条
         bar.setVisibility(View.VISIBLE);
+
         if (start == null) {
             ToastUtil.show(this, "起点未设置");
             return;
@@ -221,14 +273,23 @@ public class RouteActivity extends AppCompatActivity implements RouteSearch.OnRo
     }
 
     public void searchBus(View view) {
-        searchRouteResult(bus, RouteSearch.BUS_DEFAULT);
+        index = 0;
+        routeType = bus;
+        changeMode();
+        searchRouteResult(routeType, mode);
     }
 
     public void searchCar(View view) {
-        searchRouteResult(car, RouteSearch.BUS_DEFAULT);
+        routeType = car;
+        index = 0;
+        changeMode();
+        searchRouteResult(routeType, mode);
     }
 
     public void searchWalk(View view) {
-        searchRouteResult(walk, RouteSearch.BUS_DEFAULT);
+        routeType = walk;
+        index = 0;
+        changeMode();
+        searchRouteResult(routeType, mode);
     }
 }
