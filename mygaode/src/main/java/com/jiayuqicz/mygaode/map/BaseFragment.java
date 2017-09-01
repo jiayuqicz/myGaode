@@ -32,8 +32,10 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //设置离线地图的目录
-        MapsInitializer.sdcardDir = OfflineMapUtil.getSdCacheDir();
         share = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (share.getBoolean("offline_map_location", false)) {
+            MapsInitializer.sdcardDir = OfflineMapUtil.getSdCacheDir();
+        }
     }
 
     @Override

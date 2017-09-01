@@ -33,7 +33,10 @@
     <string name="map_gensture">启用地图手势操作</string>
 
     <string name="offline_map">离线地图</string>
-    <string name="offilne_map_manager">离线地图管理</string>
+    <string name="offline_map_manager">离线地图管理</string>
+    <string name="offline_map_location">存储在SD卡中</string>
+    <string name="offilne_map_location_summary">
+        如果勾选，那么卸载软件后的地图数据将被保留，下次安装后不必重新下载离线地图</string>
 
 
     <!--搜索-->
