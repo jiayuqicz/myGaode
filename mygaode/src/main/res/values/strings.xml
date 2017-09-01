@@ -50,10 +50,20 @@
     <string name="route_bus">公交</string>
     <string name="route_car">驾车</string>
 
-    <string-array name="schedule">
-        <item>最省钱</item>
+    <string-array name="bus_mode">
         <item>时间短</item>
+        <item>最省钱</item>
         <item>少步行</item>
+    </string-array>
+
+    <string-array name="car_mode">
+        <item>时间短</item>
+        <item>最省钱</item>
+        <item>少拥堵</item>
+    </string-array>
+
+    <string-array name="walk_mode">
+        <item>默认</item>
     </string-array>
 
     <!--详情界面-->
