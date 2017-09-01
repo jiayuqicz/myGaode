@@ -86,6 +86,8 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        //初始化界面的小蓝点点击无效
+        if (marker.getTitle() == null) return true;
 
         Intent intent = new Intent(getActivity(), RouteActivity.class);
         intent.putExtra(INTENT_DATA_ID_START, this.start);
