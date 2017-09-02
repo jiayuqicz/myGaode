@@ -127,9 +127,6 @@ public class WeatherFragment extends Fragment implements WeatherSearch.OnWeather
                     //根据设置动态调整当天的天气是否显示
                     if(!share.getBoolean("show_today", true) && i==0) {
 
-                        getView().findViewWithTag("day0_forcast_empty")
-                                .setVisibility(View.GONE);
-
                         getView().findViewWithTag("Date_value_forcast_day" + String.valueOf(i))
                                 .setVisibility(View.GONE);
 

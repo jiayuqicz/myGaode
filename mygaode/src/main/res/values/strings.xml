@@ -5,7 +5,7 @@
     <string name="fragment3">搜索</string>
     <string name="fragment4">设置</string>
 
-    <string name="Null"/>
+    <string name="Null">+++</string>
 
     <!--天气-->
     <string name="Weather_title">天气情况</string>

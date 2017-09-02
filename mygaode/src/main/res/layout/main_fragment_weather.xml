@@ -15,232 +15,173 @@
         android:textColor="@color/White"
         android:textSize="24sp" />
 
-    <GridLayout
-        android:id="@+id/weather_live"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="4">
+        android:layout_height="wrap_content" />
 
-
-        <!--内外布局均为充满、并且赋予其权重才可以保证布局正常，并覆盖wrap_content的宽度-->
-        <!--其中layout_gravity指整个空间，而gravity则指内部大小，是否充满-->
-        <!--在充满的前提下，才可以调整文字所在空间的对其方式-->
-        <!--权重控制单列的权重，而column_span则控制将几列合并为一列，也非常重要-->
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="4"
-            android:layout_columnWeight="1"
-            android:gravity="fill_horizontal"
-            android:layout_gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="18sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/weather"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:gravity="fill_horizontal"
+            android:gravity="end"
             android:layout_gravity="fill_horizontal"
-            android:layout_columnWeight="1"
             android:text="@string/weather"
-            android:textAlignment="center"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
-
         <TextView
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnSpan="1"
-            android:layout_columnWeight="1"
             android:gravity="fill_horizontal"
             android:layout_gravity="fill_horizontal"
             android:textAlignment="center"
-            android:text="@string/Null"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/weather_value"
             android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
-            android:layout_columnWeight="2"
-            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
             android:textColor="@color/White"
             android:textSize="18sp" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="4"
-            android:layout_columnWeight="1"
-            android:gravity="fill_horizontal"
-            android:layout_gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/wind"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:layout_columnWeight="1"
-            android:textAlignment="center"
             android:text="@string/wind"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnSpan="1"
-            android:layout_columnWeight="1"
             android:gravity="fill_horizontal"
             android:layout_gravity="fill_horizontal"
             android:textAlignment="center"
-            android:text="@string/Null"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/wind_value"
             android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
-            android:layout_columnWeight="2"
-            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="4"
-            android:layout_columnWeight="1"
-            android:gravity="fill_horizontal"
-            android:layout_gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/humidity"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:layout_columnWeight="1"
-            android:textAlignment="center"
             android:text="@string/humidity"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnSpan="1"
-            android:layout_columnWeight="1"
             android:gravity="fill_horizontal"
             android:layout_gravity="fill_horizontal"
             android:textAlignment="center"
-            android:text="@string/Null"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/humidity_value"
             android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
-            android:layout_columnWeight="2"
-            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
             android:textColor="@color/White"
             android:textSize="18sp" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="4"
-            android:layout_columnWeight="1"
-            android:gravity="fill_horizontal"
-            android:layout_gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/temperature"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:layout_columnWeight="1"
-            android:textAlignment="center"
             android:text="@string/temperature"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnSpan="1"
-            android:layout_columnWeight="1"
             android:gravity="fill_horizontal"
             android:layout_gravity="fill_horizontal"
             android:textAlignment="center"
-            android:text="@string/Null"
             android:textColor="@color/White"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/temperature_value"
             android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
-            android:layout_columnWeight="2"
-            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
             android:textColor="@color/White"
             android:textSize="18sp" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="4"
-            android:layout_columnWeight="1"
-            android:gravity="fill_horizontal"
-            android:layout_gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
-            android:layout_columnWeight="1"
-            android:gravity="fill_horizontal"
-            android:layout_gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="18sp" />
 
-    </GridLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/weather_forcast"
@@ -251,29 +192,19 @@
         android:textColor="@color/White"
         android:textSize="24sp" />
 
-    <GridLayout
-        android:id="@+id/forcast_root"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="3">
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
+            android:tag="Date_value_forcast_day0"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/Date_value_forcast"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -282,10 +213,10 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/weather_value_forcast"
+            android:tag="weather_value_forcast_day0"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -294,80 +225,31 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/temperature_value_forcast"
+            android:tag="temperature_value_forcast_day0"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
             android:text="@string/temperature"
             android:textColor="@color/White"
             android:textSize="18sp" />
+    </LinearLayout>
 
-        <TextView
-            android:tag="day0_forcast_empty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:tag="Date_value_forcast_day0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:textColor="@color/White"
-            android:textSize="18sp" />
-
-        <TextView
-            android:tag="weather_value_forcast_day0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:textColor="@color/White"
-            android:textSize="18sp" />
-
-        <TextView
-            android:tag="temperature_value_forcast_day0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:textColor="@color/White"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:tag="Date_value_forcast_day1"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -377,8 +259,8 @@
         <TextView
             android:tag="weather_value_forcast_day1"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -388,31 +270,28 @@
         <TextView
             android:tag="temperature_value_forcast_day1"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
             android:textColor="@color/White"
             android:textSize="18sp" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:tag="Date_value_forcast_day2"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -422,8 +301,8 @@
         <TextView
             android:tag="weather_value_forcast_day2"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -433,31 +312,28 @@
         <TextView
             android:tag="temperature_value_forcast_day2"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
             android:textColor="@color/White"
             android:textSize="18sp" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="3"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="fill_horizontal"
-            android:textAlignment="center"
-            android:text="@string/Null"
-            android:textColor="@color/White"
-            android:textSize="6sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:tag="Date_value_forcast_day3"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -467,8 +343,8 @@
         <TextView
             android:tag="weather_value_forcast_day3"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
@@ -478,15 +354,13 @@
         <TextView
             android:tag="temperature_value_forcast_day3"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:gravity="fill_horizontal"
             android:textAlignment="center"
             android:textColor="@color/White"
             android:textSize="18sp" />
-
-    </GridLayout>
-
+    </LinearLayout>
 
 </LinearLayout>

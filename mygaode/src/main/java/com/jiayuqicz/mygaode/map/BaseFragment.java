@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,9 @@ public abstract class BaseFragment extends Fragment {
 
         //获取地图控制器
         aMap = mapView.getMap();
+
+        if(mapView.getMap()== null) Log.e("test", "++++++++++++++++++++");
+        else Log.e("test", "------------------");
 
         //开启小蓝点定位
         MyLocationStyle style = new MyLocationStyle();
