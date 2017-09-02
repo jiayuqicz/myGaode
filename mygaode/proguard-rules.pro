@@ -23,3 +23,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.amap.api.maps.**{*;}
+-keep class com.autonavi.**{*;}
+-keep class com.amap.api.trace.**{*;}
+
+-dontwarn com.amap.api.location.AMapLocationClient
+-dontwarn com.amap.api.location.AMapLocationClientOption
+-dontwarn com.amap.api.location.AMapLocation
+-dontwarn com.amap.api.location.AMapLocationListener
+-dontwarn com.amap.api.location.AMapLocationClientOption$AMapLocationMode
+-dontwarn com.amap.api.location.AMapLocationClientOption$AMapLocationProtocol
+
+-keep class com.amap.api.services.**{*;}

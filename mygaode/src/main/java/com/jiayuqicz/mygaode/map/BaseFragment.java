@@ -60,7 +60,7 @@ public abstract class BaseFragment extends Fragment {
         //开启小蓝点定位
         MyLocationStyle style = new MyLocationStyle();
         style.showMyLocation(true);
-        style.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);
+        style.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
         style.interval(600000);
         aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);

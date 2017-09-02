@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.My
         super.onCreate(savedInstanceState);
         //读取设置
         share = PreferenceManager.getDefaultSharedPreferences(this);
-        enableScroll = share.getBoolean("map_switch_gensture", true);
+        enableScroll = share.getBoolean("map_switch_gensture", false);
         setContentView(R.layout.activity_main);
 
         //初始化界面
