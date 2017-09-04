@@ -48,7 +48,7 @@
         <activity android:name=".route.RouteDetailActivity" />
         <activity
             android:name=".offlinemap.OfflineMapActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity android:name=".main.SplashActivity"
             android:theme="@style/splash">
