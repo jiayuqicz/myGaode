@@ -50,6 +50,9 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
     protected void initMap(Bundle savedInstanceState) {
         super.initMap(savedInstanceState);
 
+        //初次定位时，放大地图
+        aMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+
         //设置marker点击监听器
         aMap.setOnMarkerClickListener(this);
         //开启定位的监听器
@@ -110,8 +113,9 @@ public class MapFragment extends BaseFragment implements AMap.OnMarkerClickListe
 
     @Override
     public void onMyLocationChange(Location location) {
-        if(start == null)
+        if(start == null) {
             start = new LatLonPoint(location.getLatitude(), location.getLongitude());
+        }
         else {
             start.setLatitude(location.getLatitude());
             start.setLongitude(location.getLongitude());

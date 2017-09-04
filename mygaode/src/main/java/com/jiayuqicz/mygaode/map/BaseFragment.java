@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,20 +51,18 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void initMap(Bundle savedInstanceState) {
-        mapView = getMapView();
+
+        mapView = (TextureMapView) getView().findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
 
         //获取地图控制器
         aMap = mapView.getMap();
 
-        if(mapView.getMap()== null) Log.e("test", "++++++++++++++++++++");
-        else Log.e("test", "------------------");
-
         //开启小蓝点定位
         MyLocationStyle style = new MyLocationStyle();
         style.showMyLocation(true);
         style.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
-        style.interval(600000);
+        style.interval(60000);
         aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);
 
@@ -80,6 +77,8 @@ public abstract class BaseFragment extends Fragment {
 
         //开启定位按钮
         uiSettings.setMyLocationButtonEnabled(true);
+        //显示比例尺
+        uiSettings.setScaleControlsEnabled(true);
         //开启缩放按钮
         uiSettings.setZoomControlsEnabled(true);
 
@@ -89,10 +88,6 @@ public abstract class BaseFragment extends Fragment {
         else
             uiSettings.setAllGesturesEnabled(false);
 
-    }
-
-    protected TextureMapView getMapView() {
-        return (TextureMapView) getView().findViewById(R.id.mapView);
     }
 
     @Override
