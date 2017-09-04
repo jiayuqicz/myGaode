@@ -102,7 +102,7 @@ public class SearchFragment extends Fragment implements TextWatcher, Inputtips.I
                 hashMap.put("name", tip.getName());
                 hashMap.put("district", tip.getDistrict());
                 hashMap.put("point", tip.getPoint());
-                hashMap.put("address", tip.getAddress());
+//                hashMap.put("address", tip.getAddress());
                 tips.add(hashMap);
             }
 

@@ -9,7 +9,7 @@ import com.jiayuqicz.mygaode.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final int DELAY_TIME = 1000;
+    private final int DELAY_TIME = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

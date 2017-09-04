@@ -44,8 +44,8 @@ public class MySimpleAdapter extends SimpleAdapter {
         HashMap<LatLonPoint, String> hashMap = new HashMap<>();
         for(Map map : dataList) {
             LatLonPoint point = (LatLonPoint) map.get("point");
-            String address = (String) map.get("address");
-            hashMap.put(point, address);
+            String name = (String) map.get("name");
+            hashMap.put(point, name);
         }
         return hashMap;
     }

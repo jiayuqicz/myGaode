@@ -12,4 +12,11 @@
         <item name="android:textColorSecondary">@color/Hint</item>
     </style>
 
+    <style name="splash" parent="Theme.AppCompat.NoActionBar">
+        Customize your theme here.
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/Black</item>
+        <item name="android:windowBackground">@color/Accent</item>
+    </style>
+
 </resources>
