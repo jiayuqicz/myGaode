@@ -63,6 +63,7 @@ public abstract class BaseFragment extends Fragment {
         style.showMyLocation(true);
         style.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
         style.interval(60000);
+        aMap.showIndoorMap(true);
         aMap.setMyLocationStyle(style);
         aMap.setMyLocationEnabled(true);
 
